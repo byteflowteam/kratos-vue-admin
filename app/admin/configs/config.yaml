@@ -9,12 +9,12 @@ server:
 data:
   database:
     driver: mysql
-    source: root:123456@tcp(192.168.2.121:13306)/kva?charset=utf8mb4&parseTime=True&loc=Local
+    source: root:123456@tcp(127.0.0.1:3306)/kva?charset=utf8mb4&parseTime=True&loc=Local
     maxIdleConns: 10
     maxOpenConns: 20
     logLevel: 'info'
   redis:
-    addr: 192.168.2.121:16379
+    addr: 127.0.0.1:6379
     max_idle: "128"
     max_active: "0"
     idle_timeout: "120"
