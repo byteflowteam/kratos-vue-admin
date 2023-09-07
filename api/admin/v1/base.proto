@@ -1,0 +1,215 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package api.admin.v1;
+
+option go_package = "fengyin/api/admin/v1;v1";
+
+message ApiBase {
+  string path = 1;
+  string method = 2;
+}
+
+message DeptTree {
+  int64 deptId = 1;
+  int64 parentId = 3;
+  string deptPath = 4;
+  string deptName = 5;
+  int32 sort = 6;
+  string leader = 7;
+  string phone = 8;
+  string email = 9;
+  int32 status = 10;
+  string createBy = 11;
+  string updateBy = 12;
+  repeated DeptTree children = 13;
+  google.protobuf.Timestamp createTime = 14;
+  google.protobuf.Timestamp updateTime = 15;
+}
+
+message RoleData {
+  int64 roleId = 1;
+  string roleName = 2;
+  int64 status = 3;
+  string roleKey = 4;
+  int32 roleSort = 5;
+  int64 dataScope = 6;
+  string createBy = 7;
+  string updateBy = 8;
+  string remark = 9;
+  repeated int32 menuIds = 10;
+  google.protobuf.Timestamp createTime = 13;
+  google.protobuf.Timestamp updateTime = 14;
+}
+
+message ApiData {
+  int32 id = 1;
+  string path = 2;
+  string description = 3;
+  string apiGroup = 4;
+  string method = 5;
+  google.protobuf.Timestamp createTime = 6;
+  google.protobuf.Timestamp updateTime = 7;
+}
+
+message MenuTreeAuth {
+   string name = 1;
+   string path = 2;
+   string redirect = 3;
+   string component = 4;
+   MenuTreeMeta meta = 5;
+   repeated MenuTreeAuth children = 6;
+   int64 parentId = 7;
+}
+
+message MenuTreeMeta {
+   string title = 1;
+   string isLink = 2;
+   bool isHide = 3;
+   bool isKeepAlive = 4;
+   bool isAffix = 5;
+   bool isIframe = 6;
+   repeated string auth = 7;
+   string icon = 8;
+}
+
+message MenuTree {
+  int64 menuId = 1;
+  string menuName = 2;
+  string title = 3;
+  int64 parentId = 4;
+  int32 sort = 5;
+  string icon = 6;
+  string path = 7;
+  string component = 8;
+  int32 isIframe = 9;
+  string link = 10;
+  string menuType = 11;
+  int32 hidden = 12;
+  int32 keepAlive = 13;
+  int32 isAffix = 14;
+  string permission = 15;
+  int32 status = 16;
+  string createBy = 17;
+  string updateBy = 18;
+  string remark = 19;
+  repeated MenuTree children = 20;
+  google.protobuf.Timestamp createTime = 21;
+  google.protobuf.Timestamp updateTime = 22;
+}
+
+message SimpleMenu {
+  int64 menuId = 1;
+  string menuName = 2;
+  repeated SimpleMenu children = 3;
+}
+
+message UserData {
+  int64 userId = 1;
+  string nickName = 3;
+  string phone = 4;
+  int32 roleId = 5;
+  string salt = 6;
+  string avatar = 7;
+  int64 sex = 8;
+  string email = 9;
+  int32 deptId = 10;
+  int32 postId = 11;
+  string roleIds = 12;
+  string postIds = 13;
+  string createBy = 14;
+  string updateBy = 15;
+  string remark = 16;
+  int32 status = 17;
+  string username = 18;
+  string password = 19;
+  string role_name = 20;
+  string dept_name = 21;
+  google.protobuf.Timestamp createTime = 22;
+  google.protobuf.Timestamp updateTime = 23;
+  string secret = 24;
+  string qrcode = 25;
+}
+
+message PostData {
+  int64   postId = 1;
+  string  postName = 3;
+  string  postCode = 4;
+  int32   sort = 5;
+  int32  status = 6;
+  string  remark = 7;
+  string  createBy = 8;
+  string  updateBy = 9;
+  google.protobuf.Timestamp createTime = 10;
+  google.protobuf.Timestamp updateTime = 11;
+}
+
+message DeptData {
+  repeated DeptData children = 1;
+  int64   deptId = 2;
+  string  deptName = 3;
+  string  deptPath = 4;
+  string  email = 5;
+  string  leader = 6;
+  int64  parentId = 7;
+  string  phone = 8;
+  int32  short = 9;
+  int32  status = 10;
+  string  createBy = 11;
+  google.protobuf.Timestamp createTime = 12;
+  google.protobuf.Timestamp updateTime = 13;
+}
+
+//敏感词信息
+message SensitiveInfo{
+  int32 id = 1;
+  string word = 2;
+  int32 status = 3;
+  google.protobuf.Timestamp createdAt = 4;
+}
+
+message UserInfo {
+  string userID = 1;
+  string nickname = 2;
+  string faceURL = 3;
+  int32  gender = 4;
+  string phoneNumber = 5;
+  string email = 6;
+  string motto = 8;
+  uint32 platform = 9;
+  google.protobuf.Timestamp birth = 10;
+  google.protobuf.Timestamp createTime = 11;
+  string account = 12;
+  int32 level = 13;
+  string lastLoginIp = 14;
+  int32 friendCount = 15;
+  int32 groupCount = 16;
+  int32 status = 17;
+  google.protobuf.Timestamp lastLoginTime = 18;
+  message functionStatusList {
+    int32 groupMute = 1;//群组禁言
+    int32 friendMute = 2;//私聊禁言
+    int32 createGroup = 3;//禁止创建群聊
+    int32 addFriend = 4;//禁止添加好友
+    int32 freezeAccount = 5;//冻结帐户
+  }
+  functionStatusList functionStatus = 20;
+  message ipItem {
+    string ip = 1;//ip
+    int32 isProhibited = 2;//是否已封禁
+  }
+  message ipItemSet {
+    repeated ipItem ipItem = 1;
+    int32 isMultiTerminalLogin = 2;//是否多端登录
+  }
+  ipItemSet ipList = 21;
+  int32 allowAddFriend = 22;
+  int32 allowCreateGroup = 23;
+  int32 groupMute = 24;
+  int32 friendMute = 25;
+  int32 isInIpWhiteList = 26;
+  google.protobuf.Timestamp freezeAt = 27;
+  string freezeBy = 28;
+  string freezeRemark = 29;
+}

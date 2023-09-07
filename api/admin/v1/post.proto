@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+import "google/api/annotations.proto";
+import "base.proto";
+
+package api.admin.v1;
+
+option go_package = "fengyin/api/admin/v1;v1";
+
+// 岗位管理
+service SysPost {
+  // 岗位列表
+  rpc ListPost (ListPostRequest) returns (ListPostReply){
+    option (google.api.http) = {
+      get: "/system/post/list"
+    };
+  };
+
+  // 创建岗位
+  rpc CreatePost (CreatePostRequest) returns (CreatePostReply){
+    option (google.api.http) = {
+      post: "/system/post"
+      body:"*"
+    };
+  };
+
+  // 更新岗位
+  rpc UpdatePost (UpdatePostRequest) returns (UpdatePostReply){
+    option (google.api.http) = {
+      put: "/system/post"
+      body:"*"
+    };
+  };
+
+  // 删除岗位
+  rpc DeletePost (DeletePostRequest) returns (DeletePostReply){
+    option (google.api.http) = {
+      delete: "/system/post/{id}"
+    };
+  };
+}
+
+message ListPostRequest{
+  int32 pageNum = 1;
+  int32 pageSize = 2;
+  int32 status = 3;
+  string postName = 4;
+  string postCode = 5;
+};
+message ListPostReply{
+  int32 total = 1;
+  int32 pageNum = 2;
+  int32 pageSize = 3;
+  repeated PostData data = 4;
+};
+
+message CreatePostRequest{
+  string postName = 1;
+  string postCode = 2;
+  int32  sort = 3;
+  int32 status = 4;
+  string  remark = 5;
+};
+message CreatePostReply{};
+
+message UpdatePostRequest{
+  int64 postId = 1;
+  string postName = 3;
+  string postCode = 4;
+  int32 sort = 5;
+  int32 status = 6;
+  string remark = 7;
+};
+message UpdatePostReply{};
+
+message DeletePostRequest{
+  string id = 1;
+};
+message DeletePostReply{};

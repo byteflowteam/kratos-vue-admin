@@ -1,0 +1,141 @@
+syntax = "proto3";
+package common;
+
+option go_package = "fengyin/pkg/proto/common";
+import "wrapperspb/wrapperspb.proto";
+import "google/protobuf/timestamp.proto";
+////////////////////////////////base///////////////////////////////
+
+message RequestPagination {
+  int32 pageNumber = 1;
+  int32 showNumber = 2;
+}
+
+
+message GroupInfo{
+  string groupID = 1;
+  string groupName = 2;
+  string notification = 3;
+  string introduction = 4;
+  string faceURL = 5;
+  string ownerUserID = 6;
+  int64 createTime = 7;
+  uint32 memberCount = 8;
+  string ex = 9;
+  int32 status = 10;
+  string creatorUserID = 11;
+  int32 groupType = 12;
+  int32 needVerification = 13;
+  int32 lookMemberInfo = 14;
+  int32 applyMemberFriend = 15;
+  int64 notificationUpdateTime = 16;
+  string notificationUserID = 17;
+}
+
+message GroupInfoForSet{
+  string groupID = 1;
+  string groupName = 2;
+  string notification = 3;
+  string introduction = 4;
+  string faceURL = 5;
+  string ex = 6;
+  wrapperspb.Int32Value needVerification = 7;
+  wrapperspb.Int32Value lookMemberInfo = 8;
+  wrapperspb.Int32Value applyMemberFriend = 9;
+}
+
+
+message GroupMemberFullInfo {
+  string groupID = 1 ;
+  string userID = 2 ;
+  int32 roleLevel = 3;
+  int64 joinTime = 4;
+  string nickname = 5;
+  string faceURL = 6;
+  int32 appMangerLevel = 7; //if >0
+  int32 joinSource = 8;
+  string operatorUserID = 9;
+  string ex = 10;
+  int64 muteEndTime = 11;
+  string inviterUserID = 12;
+}
+
+message GroupRequest{
+  PublicUserInfo userInfo = 1;
+  GroupInfo groupInfo = 2;
+  int32 handleResult = 3;
+  string reqMsg = 4;
+  string  handleMsg = 5;
+  int64 reqTime = 6;
+  string handleUserID = 7;
+  int64 handleTime = 8;
+  string ex = 9;
+  int32 joinSource = 10;
+  string inviterUserID = 11;
+}
+
+message PublicUserInfo{
+  string userID = 1;
+  string nickname = 2;
+  string faceURL = 3;
+  string ex = 4;
+}
+
+message UserInfo {
+  string userID = 1;
+  string nickname = 2;
+  string faceURL = 3;
+  int32  gender = 4;
+  string phoneNumber = 5;
+  string email = 6;
+  string motto = 8;
+  uint32 platform = 9;
+  string birth = 10;
+  google.protobuf.Timestamp createTime = 11;
+  string Account = 12;
+  int32 Level = 13;
+  string LastLoginIp = 14;
+  int32 friendCount = 15;
+  int32 groupCount = 16;
+  int32 status = 17;
+  google.protobuf.Timestamp LastLoginTime = 18;
+  int32 isInIpWhileList = 19;
+  message functionStatus {
+    int32 groupMute = 1;//群组禁言
+    int32 friendMute = 2;//私聊禁言
+    int32 createGroup = 3;//禁止创建群聊
+    int32 addFriend = 4;//禁止添加好友
+  }
+  repeated functionStatus functionStatusList = 20;
+  message ipItem {
+    string ip = 1;//ip
+    int32 isProhibited = 2;//是否已封禁
+  }
+  message ipItemSet {
+    repeated ipItem ipItem = 1;
+    int32 isMultiTerminalLogin = 2;//是否多端登录
+  }
+  ipItemSet ipList = 21;
+}
+
+//可提供第三方查看的用户信息
+message UserPublicInfo {
+  string userID = 1;
+  string nickname = 2;
+  string faceURL = 3;
+  int32  gender = 4;
+  string phoneNumber = 5;
+  string email = 6;
+  string motto = 8;
+  uint32 platform = 9;
+  string birth = 10;
+  google.protobuf.Timestamp createTime = 11;
+}
+
+//敏感词信息
+message SensitiveInfo{
+  int32 id = 1;
+  string word = 2;
+  int32 status = 3;
+  google.protobuf.Timestamp createTime = 4;
+}

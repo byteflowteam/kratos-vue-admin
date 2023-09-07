@@ -1,0 +1,127 @@
+syntax = "proto3";
+
+import "google/api/annotations.proto";
+import "base.proto";
+
+package api.admin.v1;
+
+option go_package = "fengyin/api/admin/v1;v1";
+
+// 角色管理
+service Roles{
+  // 创建角色
+  rpc CreateRoles (CreateRolesRequest) returns (CreateRolesReply){
+    option (google.api.http) = {
+      post: "/system/role"
+      body: "*"
+    };
+  };
+  // 更新角色
+  rpc UpdateRoles (UpdateRolesRequest) returns (UpdateRolesReply){
+    option (google.api.http) = {
+      put: "/system/role"
+      body: "*"
+    };
+  };
+
+  // 角色列表
+  rpc ListRoles (ListRolesRequest) returns (ListRolesReply){
+    option (google.api.http) = {
+      get: "/system/role/list"
+    };
+  };
+  // 更改角色状态
+  rpc ChangeRoleStatus (ChangeRoleStatusRequest) returns (ChangeRoleStatusReply) {
+      option (google.api.http) = {
+          put: "/system/role/changeStatus"
+          body: "*"
+      };
+  };
+  // 更改角色数据范围
+  rpc DataScope (DataScopeRequest) returns (DataScopeReply) {
+      option (google.api.http) = {
+          put: "/system/role/dataScope"
+          body: "*"
+      };
+  };
+
+  // 删除角色
+  rpc DeleteRoles (DeleteRolesRequest) returns (DeleteRolesReply){
+    option (google.api.http) = {
+      delete: "/system/role/{id}"
+    };
+  };
+  // 获取角色
+  rpc GetRoles (GetRolesRequest) returns (GetRolesReply){
+    option (google.api.http) = {
+      get: "/system/role/{id}"
+    };
+  };
+}
+
+message CreateRolesRequest {
+  string roleName = 1;
+  string roleKey = 2;
+  int32 sort = 3;
+  int32 status = 4;
+  string remark = 5;
+  int32 dataScope = 6;
+  repeated int64 menuIds = 7;
+  repeated ApiBase apiIds = 8;
+  int64 parentId = 9;
+  string defaultRouter = 10;
+}
+message CreateRolesReply {}
+
+message UpdateRolesRequest {
+  string roleName = 1;
+  string roleKey = 2;
+  int32 sort = 3;
+  int32 status = 4;
+  string remark = 5;
+  int32 dataScope = 6;
+  repeated int64 menuIds = 7;
+  repeated ApiBase apiIds = 8;
+  int64 parentId = 9;
+  string defaultRouter = 10;
+  int64 roleId = 11;
+}
+message UpdateRolesReply {}
+
+message DeleteRolesRequest {
+  string id = 1;
+}
+message DeleteRolesReply {}
+
+message GetRolesRequest {
+  int64 id = 1;
+}
+message GetRolesReply {
+    RoleData role = 1;
+}
+
+message ListRolesRequest {
+  int32 pageNum = 1;
+  int32 pageSize = 2;
+  int32 status = 3;
+  string roleName = 4;
+  string roleKey = 5;
+}
+message ListRolesReply {
+  int32 total = 1;
+  int32 pageNum = 2;
+  int32 pageSize = 3;
+  repeated RoleData data = 4;
+}
+
+message ChangeRoleStatusRequest{
+  int64 roleId = 1;
+  int32 status = 2;
+};
+message ChangeRoleStatusReply{};
+
+message DataScopeRequest{
+  int64 roleId = 1;
+  int32 dataScope = 2;
+};
+message DataScopeReply{};

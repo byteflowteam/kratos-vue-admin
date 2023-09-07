@@ -1,0 +1,117 @@
+syntax = "proto3";
+
+package api.admin.v1;
+
+option go_package = "fengyin/api/admin/v1;v1";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+service DictType {
+	//列表信息
+	rpc ListDictType (ListDictTypeRequest) returns (ListDictTypeReply){
+		option (google.api.http) = {
+			get: "/system/dict/type/list",
+		};
+	};
+
+	//创建
+	rpc CreateDictType (CreateDictTypeRequest) returns (CreateDictTypeReply){
+		option (google.api.http) = {
+			post: "/system/dict/type"
+			body:"*"
+		};
+	};
+	//更新
+	rpc UpdateDictType (UpdateDictTypeRequest) returns (UpdateDictTypeReply){
+		option (google.api.http) = {
+			post: "/system/dict/type/{dictId}"
+			body:"*"
+		};
+	};
+	//删除
+	rpc DeleteDictType (DeleteDictTypeRequest) returns (DeleteDictTypeReply){
+		option (google.api.http) = {
+			delete: "/system/dict/type/{dictId}"
+		};
+	};
+	//获取信息
+	rpc GetDictType (GetDictTypeRequest) returns (GetDictTypeReply){
+		option (google.api.http) = {
+			get: "/system/dict/type/{dictId}"
+		};
+	};
+}
+
+message CreateDictTypeRequest {
+	string dictName = 1;
+	string dictType = 2;
+	int32 status = 3;
+	string remark = 4;
+}
+message CreateDictTypeReply {
+
+}
+
+message UpdateDictTypeRequest{
+	uint32 dictId = 1;
+	string dictName = 2;
+	string dictType = 3;
+	int32 status = 4;
+	string createBy = 5;
+	string updateBy = 6;
+	string remark = 7;
+	google.protobuf.Timestamp createTime = 8;
+	google.protobuf.Timestamp updateTime = 9;
+
+}
+message UpdateDictTypeReply {
+	int64 dictId = 1;
+}
+
+message DeleteDictTypeRequest {
+	int64 dictId = 1;
+}
+message DeleteDictTypeReply {
+	int64 dictId = 1;
+}
+
+message GetDictTypeRequest {
+	int64 dictId = 1;
+}
+message GetDictTypeReply {
+	int64 dictId = 1;
+}
+
+message ListDictTypeRequest {
+	string dictName =1;
+	string dictType	=2;
+	int32 status = 3;
+	int32 pageNum = 4;
+	int32 pageSize = 5;
+}
+message ListDictTypeReply {
+	int32 total = 1;
+	int32 pageNum = 2;
+	int32 pageSize = 3;
+	repeated DictTypeContent data = 4;
+}
+
+message DictTypeContent{
+	uint32 dictId = 1;
+	string dictName = 2;
+	string dictType = 3;
+	int32 status = 4 ;
+	string createBy = 5;
+	string updateBy = 6;
+	string remark = 7;
+	google.protobuf.Timestamp createTime = 8;
+	google.protobuf.Timestamp updateTime = 9;
+}
+
+message GetDesignateDictTypesRequest{
+	repeated string dictIDs = 1;
+}
+message GetDesignateDictTypesReply{
+
+}

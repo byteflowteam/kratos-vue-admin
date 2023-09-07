@@ -1,0 +1,32 @@
+syntax = "proto3";
+package api.admin.v1;
+
+import "errors/errors.proto";
+
+option go_package = "fengyin/api/admin/v1;v1";
+
+
+enum SysUserErrorReason {
+  // 设置缺省错误码
+  option (errors.default_code) = 500;
+
+  // 为某个枚举单独设置错误码
+  USER_NOT_FOUND = 0 [(errors.code) = 404];
+
+  CONTENT_MISSING = 1 [(errors.code) = 400];
+
+  LOGIN_FAIL = 2 [(errors.code) = 400];
+
+  CAPTCHA_INVALID = 3 [(errors.code) = 400];
+
+  INTERNAL_ERR = 4 [(errors.code) = 500];
+
+  CODE_NOT_MATCH = 5 [(errors.code) = 400];
+
+  DATABASE_ERR = 6 [(errors.code) = 500];
+
+  TENTCENT_API = 7 [(errors.code) = 200];
+
+  BizError_API = 8 [(errors.code) = 204];
+
+}

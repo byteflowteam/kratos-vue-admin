@@ -1,0 +1,99 @@
+syntax = "proto3";
+package kratos.api;
+
+option go_package = "fengyin/app/server/internal/conf;conf";
+
+import "google/protobuf/duration.proto";
+
+message Bootstrap {
+  Server server = 1;
+  Data data = 2;
+  Auth auth = 3;
+  Casbin casbin = 4;
+  Oss oss = 5;
+}
+
+enum Env
+{
+  dev = 0; // 开发环境
+  test = 1; // 测试环境
+  pro = 2; // 正式环境
+}
+
+message Server {
+  message HTTP {
+    string network = 1;
+    string addr = 2;
+    google.protobuf.Duration timeout = 3;
+  }
+  message GRPC {
+    string network = 1;
+    string addr = 2;
+    google.protobuf.Duration timeout = 3;
+  }
+  HTTP http = 1;
+  GRPC grpc = 2;
+  Env  env = 3;
+}
+
+message Data {
+  message Database {
+    string driver = 1;
+    string source = 2;
+    int64 maxIdleConns = 3;
+    int64 maxOpenConns = 4;
+    GormLogLevel logLevel = 5;
+  }
+  message Redis {
+    string network = 1;
+    string addr = 2;
+    google.protobuf.Duration read_timeout = 3;
+    google.protobuf.Duration write_timeout = 4;
+    string username = 5;
+    string password = 6;
+    int32 database = 7;
+    bool enable_cluster = 8;
+  }
+  Database database = 1;
+  Redis redis = 2;
+}
+
+message Auth {
+  string jwtKey = 1;
+  google.protobuf.Duration  expires = 2;
+}
+
+message Casbin {
+  string path = 1;
+}
+
+enum OssUseMode {
+  aliyun = 0;
+  local = 1;
+}
+
+message OssConfig {
+  string endpoint = 1;
+  string accessKey = 2;
+  string accessSecret = 3;
+  string bucketName = 4;
+  string bucketURL = 5;
+  string imgDomain = 6;
+}
+
+message OssLocalConfig {
+  string dir = 1;
+}
+
+message Oss {
+  OssUseMode use = 1;
+  OssConfig aliyun = 2;
+  OssLocalConfig local = 3;
+}
+
+enum GormLogLevel {
+    warn = 0;
+    info = 1;
+  silent = 2;
+    error =3;
+}

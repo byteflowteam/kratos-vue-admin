@@ -1,0 +1,125 @@
+syntax = "proto3";
+
+package api.admin.v1;
+
+option go_package = "fengyin/api/admin/v1;v1";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+service DictData {
+	//列表信息
+	rpc ListDictData (ListDictDataRequest) returns (ListDictDataReply){
+		option (google.api.http) = {
+			get: "/system/dict/data/type"
+		};
+	};
+
+	//创建
+	rpc CreateDictData (CreateDictDataRequest) returns (CreateDictDataReply){
+		option (google.api.http) = {
+			post: "/system/dict/data"
+			body:"*"
+		};
+	};
+
+	//更新
+	rpc UpdateDictData (UpdateDictDataRequest) returns (UpdateDictDataReply){
+		option (google.api.http) = {
+			put: "/system/dict/data/{dictCode}"
+			body:"*"
+		};
+	};
+
+	//删除
+	rpc DeleteDictData (DeleteDictDataRequest) returns (DeleteDictDataReply){
+		option (google.api.http) = {
+			delete: "/system/dict/data/{dictCode}"
+		};
+	};
+
+	//获取信息
+	rpc GetDictData (GetDictDataRequest) returns (GetDictDataReply){
+		option (google.api.http) = {
+			get: "/system/dict/data/{dictCode}"
+		};
+	};
+
+}
+
+message CreateDictDataRequest {
+	string dictType = 1;
+	string dictLabel = 2;
+	string dictValue = 3;
+	uint32 dictSort = 4;
+	int32 status = 5;
+	string remark = 6;
+}
+message CreateDictDataReply {}
+
+message UpdateDictDataRequest{
+	int64 dictCode = 1;
+	int32 dictSort = 2;
+	string dictLabel = 3;
+	string dictValue = 4;
+	string dictType = 5;
+	int32 status = 6;
+	string cssClass = 7;
+	string listClass = 8;
+	string isDefault = 9;
+	string createBy = 10;
+	string updateBy = 11;
+	string remark = 12;
+	google.protobuf.Timestamp createTime = 13;
+	google.protobuf.Timestamp updateTime = 14;
+
+}
+message UpdateDictDataReply {
+	int64 dictCode = 1;
+}
+
+message DeleteDictDataRequest {
+	int64 dictCode = 1;
+}
+message DeleteDictDataReply {
+	int64 dictCode = 1;
+}
+
+message GetDictDataRequest {
+	int64 dictCode = 1;
+}
+message GetDictDataReply {
+	int64 dictCode = 1;
+}
+
+message ListDictDataRequest{
+	int32 pageNum = 1;
+	int32 pageSize = 2;
+	int32 status = 3;
+	string dictType = 4;
+	string dictLabel = 5;
+};
+
+message ListDictDataReply{
+	int32 total = 1;
+	int32 pageNum = 2;
+	int32 pageSize = 3;
+	repeated DictDataContent list = 4;
+};
+
+message DictDataContent {
+	uint32 dictCode = 1;
+	uint32 dictSort = 2;
+	string dictLabel = 3;
+	string dictValue = 4;
+	string dictType = 5;
+	int32 status = 6;
+	string cssClass = 7;
+	string listClass = 8;
+	string isDefault = 9;
+	string createBy = 10;
+	string updateBy = 11;
+	string remark = 12;
+	google.protobuf.Timestamp createTime = 13;
+	google.protobuf.Timestamp updateTime = 14;
+}

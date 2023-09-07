@@ -1,0 +1,117 @@
+syntax = "proto3";
+
+import "google/api/annotations.proto";
+import "base.proto";
+
+package api.admin.v1;
+
+option go_package = "fengyin/api/admin/v1;v1";
+
+// api管理
+service Api {
+
+
+  // api列表
+  rpc ListApi (ListApiRequest) returns (ListApiReply){
+    option (google.api.http) = {
+      get: "/system/api/list"
+    };
+  };
+
+  // 获取所有api
+  rpc AllApi (AllApiRequest) returns (AllApiReply) {
+      option (google.api.http) = {
+          get: "/system/api/all"
+      };
+  };
+
+  // 创建api
+  rpc CreateApi (CreateApiRequest) returns (CreateApiReply){
+    option (google.api.http) = {
+      post: "/system/api"
+      body:"*"
+    };
+  };
+
+  // 更新api
+  rpc UpdateApi (UpdateApiRequest) returns (UpdateApiReply){
+    option (google.api.http) = {
+      put: "/system/api"
+      body:"*"
+    };
+  };
+
+  // 获取角色拥有的api权限
+  rpc GetPolicyPathByRoleKey (GetPolicyPathByRoleKeyRequest) returns (GetPolicyPathByRoleKeyReply) {
+    option (google.api.http) = {
+      get: "/system/api/getPolicyPathByRoleId"
+    };
+  };
+
+  // 获取api
+  rpc GetApi (GetApiRequest) returns (GetApiReply) {
+    option (google.api.http) = {
+      get: "/system/api/{id}"
+    };
+  };
+
+  // 删除api
+  rpc DeleteApi (DeleteApiRequest) returns (DeleteApiReply){
+    option (google.api.http) = {
+      delete: "/system/api/{id}"
+    };
+  };
+}
+
+message GetApiRequest{
+  int64 id = 1;
+};
+message GetApiReply{
+  ApiData api = 1;
+};
+
+message ListApiRequest{
+  int32 pageNum = 1;
+  int32 pageSize = 2;
+};
+message ListApiReply{
+  int32 total = 1;
+  int32 pageNum = 2;
+  int32 pageSize = 3;
+  repeated ApiData data = 4;
+};
+
+message AllApiRequest{};
+message AllApiReply{
+  repeated ApiData data = 1;
+};
+
+message CreateApiRequest{
+  string path = 1;
+  string description = 2;
+  string apiGroup = 3;
+  string method = 4;
+};
+message CreateApiReply{};
+
+message UpdateApiRequest{
+  int64 id = 1;
+  string path = 4;
+  string description = 5;
+  string apiGroup = 6;
+  string method = 7;
+};
+message UpdateApiReply{};
+
+message DeleteApiRequest{
+  int64 id = 1;
+};
+message DeleteApiReply{};
+
+message GetPolicyPathByRoleKeyRequest{
+  string roleKey = 1;
+};
+message GetPolicyPathByRoleKeyReply{
+    repeated ApiBase apis = 1;
+};
+

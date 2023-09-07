@@ -1,0 +1,287 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/any.proto";
+import "google/api/annotations.proto";
+import "validate/validate.proto";
+import "base.proto";
+
+package api.admin.v1;
+
+option go_package = "fengyin/api/admin/v1;v1";
+
+// 用户管理
+service Sysuser {
+  // 创建用户
+  rpc CreateSysuser (CreateSysuserRequest) returns (CreateSysuserReply){
+    option (google.api.http) = {
+      post: "/system/user"
+      body: "*"
+    };
+  };
+  // 更新用户
+  rpc UpdateSysuser (UpdateSysuserRequest) returns (UpdateSysuserReply){
+    option (google.api.http) = {
+      put: "/system/user"
+      body: "*"
+    };
+  };
+  // 删除用户
+  rpc DeleteSysuser (DeleteSysuserRequest) returns (DeleteSysuserReply){
+    option (google.api.http) = {
+      delete: "/system/user/{id}"
+    };
+  };
+  // 获取用户
+  rpc GetSysuser (GetSysuserRequest) returns (GetSysuserReply){
+    option (google.api.http) = {
+      get: "/system/user/getById/{id}"
+    };
+  };
+  // 用户列表
+  rpc ListSysuser (ListSysuserRequest) returns (ListSysuserReply){
+    option (google.api.http) = {
+      get: "/system/user/list"
+    };
+  };
+  // 获取验证码
+  rpc GetCaptcha (GetCaptchaRequest) returns (GetCaptchaReply){
+    option (google.api.http) = {
+      get: "/system/user/getCaptcha"
+    };
+  };
+  // 登入
+  rpc Login (LoginRequest) returns (LoginReply){
+    option (google.api.http) = {
+      post: "/system/user/login"
+      body: "*"
+    };
+  };
+  // 登出
+  rpc Logout (LogoutRequest) returns (LogoutReply){
+    option (google.api.http) = {
+      post: "/system/user/logout"
+      body: "*"
+    };
+  };
+  // 获取用户权限
+  rpc Auth (AuthRequest) returns (AuthReply){
+    option (google.api.http) = {
+      get: "/system/user/auth"
+    };
+  };
+  // 更新用户状态
+  rpc ChangeStatus(ChangeStatusRequest) returns (ChangeStatusReply){
+    option (google.api.http) = {
+      put: "/system/user/changeStatus"
+      body:"*"
+    };
+  };
+
+  // 更新密码
+  rpc UpdatePassword (UpdatePasswordRequest) returns (UpdatePasswordReply){
+    option (google.api.http) = {
+      put: "/system/user/pwd"
+      body:"*"
+    };
+  };
+  // 获取岗位
+  rpc GetPostInit (GetPostInitRequest) returns (GetPostInitReply){
+    option (google.api.http) = {
+      get: "/system/user/getInit"
+    };
+  };
+  // 获取RoPo
+  rpc GetUserRolePost (GetUserRolePostRequest) returns (GetUserRolePostReply){
+    option (google.api.http) = {
+      get: "/system/user/getRoPo"
+    };
+  };
+  // 生成密钥和二维码
+  rpc GetUserGoogleSecret (GetUserGoogleSecretRequest) returns (GetUserGoogleSecretReply){
+    option (google.api.http) = {
+      get: "/system/user/secret"
+    };
+  };
+}
+
+message CreateSysuserRequest {
+  string nickName = 1 [(validate.rules).string = {min_len: 1, max_len: 30}];
+  string username = 2 [(validate.rules).string = {min_len: 1, max_len: 30}];
+  string password = 3 [(validate.rules).string = {min_len: 1, max_len: 30}];
+  string phone = 4 ;
+  string email = 5;
+  int32 sex = 6;
+  int64 deptId = 7;
+  int32 status = 8;
+  string remark = 9;
+  int64 postId = 10;
+  int64 roleId = 11;
+  string postIds = 12;
+  string roleIds = 13;
+  string avatar = 14;
+  string secret = 15 [(validate.rules).string.len = 32];
+}
+
+message CreateSysuserReply {}
+
+message UpdateSysuserRequest {
+  int64 userId = 1;
+  string nickName = 3;
+  string phone = 4;
+  int64 roleId = 5;
+  string salt = 6;
+  string avatar = 7;
+  int32 sex = 8;
+  string email = 9;
+  int64 deptId = 10;
+  int64 postId = 11;
+  string roleIds = 12;
+  string postIds = 13;
+  string createBy = 14;
+  string updateBy = 15;
+  string remark = 16;
+  int32 status = 17;
+  google.protobuf.Timestamp createdAt = 19;
+  google.protobuf.Timestamp updatedAt = 20;
+  string username = 21;
+  string password = 22;
+  string role_name = 23;
+  string secret = 24;
+}
+message UpdateSysuserReply {}
+
+message DeleteSysuserRequest {
+  int64 id = 1;
+}
+message DeleteSysuserReply {}
+
+message GetSysuserRequest {
+  int64 id = 1;
+}
+message GetSysuserReply {
+  UserData user = 1;
+  repeated RoleData roles = 2;
+  repeated PostData posts = 3;
+  repeated DeptTree depts = 4;
+  string  postIds = 5;
+  string roleIds = 6;
+}
+
+message ListSysuserRequest {
+  int32 pageNum = 1;
+  int32 pageSize = 2;
+  string username = 3;
+  string phone = 4;
+  int32 status = 5;
+}
+message ListSysuserReply {
+  int32 total = 1;
+  int32 pageNum = 2;
+  int32 pageSize = 3;
+  repeated UserData data = 4;
+}
+
+message GetCaptchaRequest{}
+message GetCaptchaReply{
+  string base64Captcha = 1;
+  string captchaId = 2;
+  string content = 3;
+}
+
+message LoginRequest{
+  string username = 1;
+  string password = 2;
+  string code = 3;
+}
+message LoginReply{
+  string token = 1;
+  int64 expire = 2;
+}
+
+message LogoutRequest{}
+message LogoutReply{}
+
+message AuthRequest{
+  string username = 1;
+}
+message AuthReply{
+
+  message User {
+    int64 userId = 1;
+    string nickName = 2;
+    string phone = 3;
+    int64 roleId = 4;
+    string salt = 5;
+    string avatar = 6;
+    int32 sex = 7;
+    string email = 8;
+    int64 deptId = 9;
+    int64 postId = 10;
+    string roleIds = 11;
+    string postIds = 12;
+    string createBy = 13;
+    string updateBy = 14;
+    string remark = 15;
+    int32 status = 16;
+    string username = 17;
+    string password = 18;
+    string role_name = 19;
+    google.protobuf.Timestamp createdAt = 20;
+    google.protobuf.Timestamp updatedAt = 21;
+  }
+
+  message Role {
+    int64 roleId = 1;
+    string roleName = 2;
+    int32 status = 3;
+    string roleKey = 4;
+    int32 roleSort = 5;
+    int32 dataScope = 6;
+    string createBy = 7;
+    string updateBy = 8;
+    string remark = 9;
+    google.protobuf.Any apiIds = 10;
+    google.protobuf.Any menuIds = 11;
+    google.protobuf.Any deptIds = 12;
+    google.protobuf.Timestamp createdAt = 13;
+    google.protobuf.Timestamp updatedAt = 14;
+  }
+
+  User user = 1;
+  Role role = 2;
+  repeated string permissions = 3;
+  repeated MenuTreeAuth menus = 4;
+}
+
+message ChangeStatusRequest{
+  int64 userId = 1;
+  int32 status = 2;
+}
+message ChangeStatusReply{}
+
+message UpdatePasswordRequest{
+  string newPassword = 1;
+  string oldPassword = 2;
+};
+message UpdatePasswordReply{};
+
+message GetPostInitRequest{};
+message GetPostInitReply{
+  repeated RoleData roles = 1;
+  repeated PostData posts = 2;
+};
+
+message GetUserRolePostRequest{};
+message GetUserRolePostReply{
+  repeated RoleData roles = 1;
+  repeated PostData posts = 2;
+};
+
+message GetUserGoogleSecretRequest {
+}
+
+message GetUserGoogleSecretReply {
+  string secret = 1;
+  string qrcode = 2;
+}

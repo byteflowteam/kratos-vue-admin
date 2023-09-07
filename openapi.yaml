@@ -1,0 +1,2568 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: ""
+    version: 0.0.1
+paths:
+    /system/api:
+        put:
+            tags:
+                - Api
+            description: 更新api
+            operationId: Api_UpdateApi
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.admin.v1.UpdateApiRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.UpdateApiReply'
+        post:
+            tags:
+                - Api
+            description: 创建api
+            operationId: Api_CreateApi
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.admin.v1.CreateApiRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.CreateApiReply'
+    /system/api/all:
+        get:
+            tags:
+                - Api
+            description: 获取所有api
+            operationId: Api_AllApi
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.AllApiReply'
+    /system/api/getPolicyPathByRoleId:
+        get:
+            tags:
+                - Api
+            description: 获取角色拥有的api权限
+            operationId: Api_GetPolicyPathByRoleKey
+            parameters:
+                - name: roleKey
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.GetPolicyPathByRoleKeyReply'
+    /system/api/list:
+        get:
+            tags:
+                - Api
+            description: api列表
+            operationId: Api_ListApi
+            parameters:
+                - name: pageNum
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: pageSize
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.ListApiReply'
+    /system/api/{id}:
+        get:
+            tags:
+                - Api
+            description: 获取api
+            operationId: Api_GetApi
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.GetApiReply'
+        delete:
+            tags:
+                - Api
+            description: 删除api
+            operationId: Api_DeleteApi
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.DeleteApiReply'
+    /system/dept:
+        put:
+            tags:
+                - Dept
+            description: 更新部门
+            operationId: Dept_UpdateDept
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.admin.v1.UpdateDeptRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.UpdateDeptReply'
+        post:
+            tags:
+                - Dept
+            description: 创建部门
+            operationId: Dept_CreateDept
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.admin.v1.CreateDeptRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.CreateDeptReply'
+    /system/dept/deptTree:
+        get:
+            tags:
+                - Dept
+            description: 获取部门关系结构
+            operationId: Dept_GetDeptTree
+            parameters:
+                - name: deptName
+                  in: query
+                  schema:
+                    type: string
+                - name: status
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: deptId
+                  in: query
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.GetDeptTreeReply'
+    /system/dept/list:
+        get:
+            tags:
+                - Dept
+            description: 部门列表
+            operationId: Dept_ListDept
+            parameters:
+                - name: deptName
+                  in: query
+                  schema:
+                    type: string
+                - name: status
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: deptId
+                  in: query
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.ListDeptReply'
+    /system/dept/roleDeptTreeSelect/{roleId}:
+        get:
+            tags:
+                - Dept
+            description: 获取角色部门树
+            operationId: Dept_RoleDeptTreeSelect
+            parameters:
+                - name: roleId
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.RoleDeptTreeSelectReply'
+    /system/dept/{id}:
+        delete:
+            tags:
+                - Dept
+            description: 删除部门
+            operationId: Dept_DeleteDept
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.DeleteDeptReply'
+    /system/dict/data:
+        post:
+            tags:
+                - DictData
+            description: 创建
+            operationId: DictData_CreateDictData
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.admin.v1.CreateDictDataRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.CreateDictDataReply'
+    /system/dict/data/type:
+        get:
+            tags:
+                - DictData
+            description: 列表信息
+            operationId: DictData_ListDictData
+            parameters:
+                - name: pageNum
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: pageSize
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: status
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: dictType
+                  in: query
+                  schema:
+                    type: string
+                - name: dictLabel
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.ListDictDataReply'
+    /system/dict/data/{dictCode}:
+        get:
+            tags:
+                - DictData
+            description: 获取信息
+            operationId: DictData_GetDictData
+            parameters:
+                - name: dictCode
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.GetDictDataReply'
+        put:
+            tags:
+                - DictData
+            description: 更新
+            operationId: DictData_UpdateDictData
+            parameters:
+                - name: dictCode
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.admin.v1.UpdateDictDataRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.UpdateDictDataReply'
+        delete:
+            tags:
+                - DictData
+            description: 删除
+            operationId: DictData_DeleteDictData
+            parameters:
+                - name: dictCode
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.DeleteDictDataReply'
+    /system/dict/type:
+        post:
+            tags:
+                - DictType
+            description: 创建
+            operationId: DictType_CreateDictType
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.admin.v1.CreateDictTypeRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.CreateDictTypeReply'
+    /system/dict/type/list:
+        get:
+            tags:
+                - DictType
+            description: 列表信息
+            operationId: DictType_ListDictType
+            parameters:
+                - name: dictName
+                  in: query
+                  schema:
+                    type: string
+                - name: dictType
+                  in: query
+                  schema:
+                    type: string
+                - name: status
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: pageNum
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: pageSize
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.ListDictTypeReply'
+    /system/dict/type/{dictId}:
+        get:
+            tags:
+                - DictType
+            description: 获取信息
+            operationId: DictType_GetDictType
+            parameters:
+                - name: dictId
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.GetDictTypeReply'
+        post:
+            tags:
+                - DictType
+            description: 更新
+            operationId: DictType_UpdateDictType
+            parameters:
+                - name: dictId
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint32
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.admin.v1.UpdateDictTypeRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.UpdateDictTypeReply'
+        delete:
+            tags:
+                - DictType
+            description: 删除
+            operationId: DictType_DeleteDictType
+            parameters:
+                - name: dictId
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.DeleteDictTypeReply'
+    /system/menu:
+        put:
+            tags:
+                - Menus
+            description: 更新菜单
+            operationId: Menus_UpdateMenus
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.admin.v1.UpdateMenusRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.UpdateMenusReply'
+        post:
+            tags:
+                - Menus
+            description: 创建菜单
+            operationId: Menus_CreateMenus
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.admin.v1.CreateMenusRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.CreateMenusReply'
+    /system/menu/list:
+        get:
+            tags:
+                - Menus
+            description: 菜单列表
+            operationId: Menus_ListMenus
+            parameters:
+                - name: menuName
+                  in: query
+                  schema:
+                    type: string
+                - name: status
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.ListMenusReply'
+    /system/menu/menuTreeSelect:
+        get:
+            tags:
+                - Menus
+            description: 获取菜单关系结构
+            operationId: Menus_GetMenusTree
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.GetMenusTreeReply'
+    /system/menu/roleMenuTreeSelect/{roleId}:
+        get:
+            tags:
+                - Menus
+            description: 获取角色菜单树
+            operationId: Menus_RoleMenuTreeSelect
+            parameters:
+                - name: roleId
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.RoleMenuTreeSelectReply'
+    /system/menu/{id}:
+        get:
+            tags:
+                - Menus
+            description: 获取菜单
+            operationId: Menus_GetMenus
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.GetMenusReply'
+        delete:
+            tags:
+                - Menus
+            description: 删除菜单
+            operationId: Menus_DeleteMenus
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.DeleteMenusReply'
+    /system/post:
+        put:
+            tags:
+                - SysPost
+            description: 更新岗位
+            operationId: SysPost_UpdatePost
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.admin.v1.UpdatePostRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.UpdatePostReply'
+        post:
+            tags:
+                - SysPost
+            description: 创建岗位
+            operationId: SysPost_CreatePost
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.admin.v1.CreatePostRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.CreatePostReply'
+    /system/post/list:
+        get:
+            tags:
+                - SysPost
+            description: 岗位列表
+            operationId: SysPost_ListPost
+            parameters:
+                - name: pageNum
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: pageSize
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: status
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: postName
+                  in: query
+                  schema:
+                    type: string
+                - name: postCode
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.ListPostReply'
+    /system/post/{id}:
+        delete:
+            tags:
+                - SysPost
+            description: 删除岗位
+            operationId: SysPost_DeletePost
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.DeletePostReply'
+    /system/role:
+        put:
+            tags:
+                - Roles
+            description: 更新角色
+            operationId: Roles_UpdateRoles
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.admin.v1.UpdateRolesRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.UpdateRolesReply'
+        post:
+            tags:
+                - Roles
+            description: 创建角色
+            operationId: Roles_CreateRoles
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.admin.v1.CreateRolesRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.CreateRolesReply'
+    /system/role/changeStatus:
+        put:
+            tags:
+                - Roles
+            description: 更改角色状态
+            operationId: Roles_ChangeRoleStatus
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.admin.v1.ChangeRoleStatusRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.ChangeRoleStatusReply'
+    /system/role/dataScope:
+        put:
+            tags:
+                - Roles
+            description: 更改角色数据范围
+            operationId: Roles_DataScope
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.admin.v1.DataScopeRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.DataScopeReply'
+    /system/role/list:
+        get:
+            tags:
+                - Roles
+            description: 角色列表
+            operationId: Roles_ListRoles
+            parameters:
+                - name: pageNum
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: pageSize
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: status
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: roleName
+                  in: query
+                  schema:
+                    type: string
+                - name: roleKey
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.ListRolesReply'
+    /system/role/{id}:
+        get:
+            tags:
+                - Roles
+            description: 获取角色
+            operationId: Roles_GetRoles
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.GetRolesReply'
+        delete:
+            tags:
+                - Roles
+            description: 删除角色
+            operationId: Roles_DeleteRoles
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.DeleteRolesReply'
+    /system/user:
+        put:
+            tags:
+                - Sysuser
+            description: 更新用户
+            operationId: Sysuser_UpdateSysuser
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.admin.v1.UpdateSysuserRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.UpdateSysuserReply'
+        post:
+            tags:
+                - Sysuser
+            description: 创建用户
+            operationId: Sysuser_CreateSysuser
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.admin.v1.CreateSysuserRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.CreateSysuserReply'
+    /system/user/auth:
+        get:
+            tags:
+                - Sysuser
+            description: 获取用户权限
+            operationId: Sysuser_Auth
+            parameters:
+                - name: username
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.AuthReply'
+    /system/user/changeStatus:
+        put:
+            tags:
+                - Sysuser
+            description: 更新用户状态
+            operationId: Sysuser_ChangeStatus
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.admin.v1.ChangeStatusRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.ChangeStatusReply'
+    /system/user/getById/{id}:
+        get:
+            tags:
+                - Sysuser
+            description: 获取用户
+            operationId: Sysuser_GetSysuser
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.GetSysuserReply'
+    /system/user/getCaptcha:
+        get:
+            tags:
+                - Sysuser
+            description: 获取验证码
+            operationId: Sysuser_GetCaptcha
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.GetCaptchaReply'
+    /system/user/getInit:
+        get:
+            tags:
+                - Sysuser
+            description: 获取岗位
+            operationId: Sysuser_GetPostInit
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.GetPostInitReply'
+    /system/user/getRoPo:
+        get:
+            tags:
+                - Sysuser
+            description: 获取RoPo
+            operationId: Sysuser_GetUserRolePost
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.GetUserRolePostReply'
+    /system/user/list:
+        get:
+            tags:
+                - Sysuser
+            description: 用户列表
+            operationId: Sysuser_ListSysuser
+            parameters:
+                - name: pageNum
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: pageSize
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+                - name: username
+                  in: query
+                  schema:
+                    type: string
+                - name: phone
+                  in: query
+                  schema:
+                    type: string
+                - name: status
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.ListSysuserReply'
+    /system/user/login:
+        post:
+            tags:
+                - Sysuser
+            description: 登入
+            operationId: Sysuser_Login
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.admin.v1.LoginRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.LoginReply'
+    /system/user/logout:
+        post:
+            tags:
+                - Sysuser
+            description: 登出
+            operationId: Sysuser_Logout
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.admin.v1.LogoutRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.LogoutReply'
+    /system/user/pwd:
+        put:
+            tags:
+                - Sysuser
+            description: 更新密码
+            operationId: Sysuser_UpdatePassword
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.admin.v1.UpdatePasswordRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.UpdatePasswordReply'
+    /system/user/secret:
+        get:
+            tags:
+                - Sysuser
+            description: 生成密钥和二维码
+            operationId: Sysuser_GetUserGoogleSecret
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.GetUserGoogleSecretReply'
+    /system/user/{id}:
+        delete:
+            tags:
+                - Sysuser
+            description: 删除用户
+            operationId: Sysuser_DeleteSysuser
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.DeleteSysuserReply'
+components:
+    schemas:
+        api.admin.v1.AllApiReply:
+            type: object
+            properties:
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.ApiData'
+        api.admin.v1.ApiBase:
+            type: object
+            properties:
+                path:
+                    type: string
+                method:
+                    type: string
+        api.admin.v1.ApiData:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int32
+                path:
+                    type: string
+                description:
+                    type: string
+                apiGroup:
+                    type: string
+                method:
+                    type: string
+                createTime:
+                    type: string
+                    format: date-time
+                updateTime:
+                    type: string
+                    format: date-time
+        api.admin.v1.AuthReply:
+            type: object
+            properties:
+                user:
+                    $ref: '#/components/schemas/api.admin.v1.AuthReply_User'
+                role:
+                    $ref: '#/components/schemas/api.admin.v1.AuthReply_Role'
+                permissions:
+                    type: array
+                    items:
+                        type: string
+                menus:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.MenuTreeAuth'
+        api.admin.v1.AuthReply_Role:
+            type: object
+            properties:
+                roleId:
+                    type: integer
+                    format: int64
+                roleName:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                roleKey:
+                    type: string
+                roleSort:
+                    type: integer
+                    format: int32
+                dataScope:
+                    type: integer
+                    format: int32
+                createBy:
+                    type: string
+                updateBy:
+                    type: string
+                remark:
+                    type: string
+                apiIds:
+                    $ref: '#/components/schemas/google.protobuf.Any'
+                menuIds:
+                    $ref: '#/components/schemas/google.protobuf.Any'
+                deptIds:
+                    $ref: '#/components/schemas/google.protobuf.Any'
+                createdAt:
+                    type: string
+                    format: date-time
+                updatedAt:
+                    type: string
+                    format: date-time
+        api.admin.v1.AuthReply_User:
+            type: object
+            properties:
+                userId:
+                    type: integer
+                    format: int64
+                nickName:
+                    type: string
+                phone:
+                    type: string
+                roleId:
+                    type: integer
+                    format: int64
+                salt:
+                    type: string
+                avatar:
+                    type: string
+                sex:
+                    type: integer
+                    format: int32
+                email:
+                    type: string
+                deptId:
+                    type: integer
+                    format: int64
+                postId:
+                    type: integer
+                    format: int64
+                roleIds:
+                    type: string
+                postIds:
+                    type: string
+                createBy:
+                    type: string
+                updateBy:
+                    type: string
+                remark:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                username:
+                    type: string
+                password:
+                    type: string
+                roleName:
+                    type: string
+                createdAt:
+                    type: string
+                    format: date-time
+                updatedAt:
+                    type: string
+                    format: date-time
+        api.admin.v1.ChangeRoleStatusReply:
+            type: object
+            properties: {}
+        api.admin.v1.ChangeRoleStatusRequest:
+            type: object
+            properties:
+                roleId:
+                    type: integer
+                    format: int64
+                status:
+                    type: integer
+                    format: int32
+        api.admin.v1.ChangeStatusReply:
+            type: object
+            properties: {}
+        api.admin.v1.ChangeStatusRequest:
+            type: object
+            properties:
+                userId:
+                    type: integer
+                    format: int64
+                status:
+                    type: integer
+                    format: int32
+        api.admin.v1.CreateApiReply:
+            type: object
+            properties: {}
+        api.admin.v1.CreateApiRequest:
+            type: object
+            properties:
+                path:
+                    type: string
+                description:
+                    type: string
+                apiGroup:
+                    type: string
+                method:
+                    type: string
+        api.admin.v1.CreateDeptReply:
+            type: object
+            properties: {}
+        api.admin.v1.CreateDeptRequest:
+            type: object
+            properties:
+                parentId:
+                    type: integer
+                    format: int64
+                deptName:
+                    type: string
+                leader:
+                    type: string
+                phone:
+                    type: string
+                email:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                sort:
+                    type: integer
+                    format: int32
+        api.admin.v1.CreateDictDataReply:
+            type: object
+            properties: {}
+        api.admin.v1.CreateDictDataRequest:
+            type: object
+            properties:
+                dictType:
+                    type: string
+                dictLabel:
+                    type: string
+                dictValue:
+                    type: string
+                dictSort:
+                    type: integer
+                    format: uint32
+                status:
+                    type: integer
+                    format: int32
+                remark:
+                    type: string
+        api.admin.v1.CreateDictTypeReply:
+            type: object
+            properties: {}
+        api.admin.v1.CreateDictTypeRequest:
+            type: object
+            properties:
+                dictName:
+                    type: string
+                dictType:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                remark:
+                    type: string
+        api.admin.v1.CreateMenusReply:
+            type: object
+            properties:
+                menus:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.MenuTree'
+                permissions:
+                    type: array
+                    items:
+                        type: string
+        api.admin.v1.CreateMenusRequest:
+            type: object
+            properties:
+                menuName:
+                    type: string
+                title:
+                    type: string
+                parentId:
+                    type: integer
+                    format: int32
+                sort:
+                    type: integer
+                    format: int32
+                icon:
+                    type: string
+                path:
+                    type: string
+                component:
+                    type: string
+                isIframe:
+                    type: integer
+                    format: int32
+                isLink:
+                    type: string
+                menuType:
+                    type: string
+                isHide:
+                    type: integer
+                    format: int64
+                isKeepAlive:
+                    type: integer
+                    format: int32
+                isAffix:
+                    type: integer
+                    format: int32
+                permission:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                remark:
+                    type: string
+        api.admin.v1.CreatePostReply:
+            type: object
+            properties: {}
+        api.admin.v1.CreatePostRequest:
+            type: object
+            properties:
+                postName:
+                    type: string
+                postCode:
+                    type: string
+                sort:
+                    type: integer
+                    format: int32
+                status:
+                    type: integer
+                    format: int32
+                remark:
+                    type: string
+        api.admin.v1.CreateRolesReply:
+            type: object
+            properties: {}
+        api.admin.v1.CreateRolesRequest:
+            type: object
+            properties:
+                roleName:
+                    type: string
+                roleKey:
+                    type: string
+                sort:
+                    type: integer
+                    format: int32
+                status:
+                    type: integer
+                    format: int32
+                remark:
+                    type: string
+                dataScope:
+                    type: integer
+                    format: int32
+                menuIds:
+                    type: array
+                    items:
+                        type: integer
+                        format: int64
+                apiIds:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.ApiBase'
+                parentId:
+                    type: integer
+                    format: int64
+                defaultRouter:
+                    type: string
+        api.admin.v1.CreateSysuserReply:
+            type: object
+            properties: {}
+        api.admin.v1.CreateSysuserRequest:
+            type: object
+            properties:
+                nickName:
+                    type: string
+                username:
+                    type: string
+                password:
+                    type: string
+                phone:
+                    type: string
+                email:
+                    type: string
+                sex:
+                    type: integer
+                    format: int32
+                deptId:
+                    type: integer
+                    format: int64
+                status:
+                    type: integer
+                    format: int32
+                remark:
+                    type: string
+                postId:
+                    type: integer
+                    format: int64
+                roleId:
+                    type: integer
+                    format: int64
+                postIds:
+                    type: string
+                roleIds:
+                    type: string
+                avatar:
+                    type: string
+                secret:
+                    type: string
+        api.admin.v1.DataScopeReply:
+            type: object
+            properties: {}
+        api.admin.v1.DataScopeRequest:
+            type: object
+            properties:
+                roleId:
+                    type: integer
+                    format: int64
+                dataScope:
+                    type: integer
+                    format: int32
+        api.admin.v1.DeleteApiReply:
+            type: object
+            properties: {}
+        api.admin.v1.DeleteDeptReply:
+            type: object
+            properties: {}
+        api.admin.v1.DeleteDictDataReply:
+            type: object
+            properties:
+                dictCode:
+                    type: integer
+                    format: int64
+        api.admin.v1.DeleteDictTypeReply:
+            type: object
+            properties:
+                dictId:
+                    type: integer
+                    format: int64
+        api.admin.v1.DeleteMenusReply:
+            type: object
+            properties: {}
+        api.admin.v1.DeletePostReply:
+            type: object
+            properties: {}
+        api.admin.v1.DeleteRolesReply:
+            type: object
+            properties: {}
+        api.admin.v1.DeleteSysuserReply:
+            type: object
+            properties: {}
+        api.admin.v1.DeptLabel:
+            type: object
+            properties:
+                children:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.DeptLabel'
+                deptId:
+                    type: integer
+                    format: int32
+                deptName:
+                    type: string
+        api.admin.v1.DeptTree:
+            type: object
+            properties:
+                deptId:
+                    type: integer
+                    format: int64
+                parentId:
+                    type: integer
+                    format: int64
+                deptPath:
+                    type: string
+                deptName:
+                    type: string
+                sort:
+                    type: integer
+                    format: int32
+                leader:
+                    type: string
+                phone:
+                    type: string
+                email:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                createBy:
+                    type: string
+                updateBy:
+                    type: string
+                children:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.DeptTree'
+                createTime:
+                    type: string
+                    format: date-time
+                updateTime:
+                    type: string
+                    format: date-time
+        api.admin.v1.DictDataContent:
+            type: object
+            properties:
+                dictCode:
+                    type: integer
+                    format: uint32
+                dictSort:
+                    type: integer
+                    format: uint32
+                dictLabel:
+                    type: string
+                dictValue:
+                    type: string
+                dictType:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                cssClass:
+                    type: string
+                listClass:
+                    type: string
+                isDefault:
+                    type: string
+                createBy:
+                    type: string
+                updateBy:
+                    type: string
+                remark:
+                    type: string
+                createTime:
+                    type: string
+                    format: date-time
+                updateTime:
+                    type: string
+                    format: date-time
+        api.admin.v1.DictTypeContent:
+            type: object
+            properties:
+                dictId:
+                    type: integer
+                    format: uint32
+                dictName:
+                    type: string
+                dictType:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                createBy:
+                    type: string
+                updateBy:
+                    type: string
+                remark:
+                    type: string
+                createTime:
+                    type: string
+                    format: date-time
+                updateTime:
+                    type: string
+                    format: date-time
+        api.admin.v1.GetApiReply:
+            type: object
+            properties:
+                api:
+                    $ref: '#/components/schemas/api.admin.v1.ApiData'
+        api.admin.v1.GetCaptchaReply:
+            type: object
+            properties:
+                base64Captcha:
+                    type: string
+                captchaId:
+                    type: string
+                content:
+                    type: string
+        api.admin.v1.GetDeptTreeReply:
+            type: object
+            properties:
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.DeptTree'
+        api.admin.v1.GetDictDataReply:
+            type: object
+            properties:
+                dictCode:
+                    type: integer
+                    format: int64
+        api.admin.v1.GetDictTypeReply:
+            type: object
+            properties:
+                dictId:
+                    type: integer
+                    format: int64
+        api.admin.v1.GetMenusReply:
+            type: object
+            properties:
+                menuId:
+                    type: integer
+                    format: int32
+                menuName:
+                    type: string
+                title:
+                    type: string
+                parentId:
+                    type: integer
+                    format: int32
+                sort:
+                    type: integer
+                    format: int32
+                icon:
+                    type: string
+                path:
+                    type: string
+                component:
+                    type: string
+                isIframe:
+                    type: integer
+                    format: int32
+                isLink:
+                    type: string
+                menuType:
+                    type: string
+                isHide:
+                    type: integer
+                    format: int64
+                isKeepAlive:
+                    type: integer
+                    format: int32
+                isAffix:
+                    type: integer
+                    format: int32
+                permission:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                createBy:
+                    type: string
+                updateBy:
+                    type: string
+                remark:
+                    type: string
+                createdAt:
+                    type: string
+                    format: date-time
+                updatedAt:
+                    type: string
+                    format: date-time
+        api.admin.v1.GetMenusTreeReply:
+            type: object
+            properties:
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.SimpleMenu'
+        api.admin.v1.GetPolicyPathByRoleKeyReply:
+            type: object
+            properties:
+                apis:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.ApiBase'
+        api.admin.v1.GetPostInitReply:
+            type: object
+            properties:
+                roles:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.RoleData'
+                posts:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.PostData'
+        api.admin.v1.GetRolesReply:
+            type: object
+            properties:
+                role:
+                    $ref: '#/components/schemas/api.admin.v1.RoleData'
+        api.admin.v1.GetSysuserReply:
+            type: object
+            properties:
+                user:
+                    $ref: '#/components/schemas/api.admin.v1.UserData'
+                roles:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.RoleData'
+                posts:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.PostData'
+                depts:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.DeptTree'
+                postIds:
+                    type: string
+                roleIds:
+                    type: string
+        api.admin.v1.GetUserGoogleSecretReply:
+            type: object
+            properties:
+                secret:
+                    type: string
+                qrcode:
+                    type: string
+        api.admin.v1.GetUserRolePostReply:
+            type: object
+            properties:
+                roles:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.RoleData'
+                posts:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.PostData'
+        api.admin.v1.ListApiReply:
+            type: object
+            properties:
+                total:
+                    type: integer
+                    format: int32
+                pageNum:
+                    type: integer
+                    format: int32
+                pageSize:
+                    type: integer
+                    format: int32
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.ApiData'
+        api.admin.v1.ListDeptReply:
+            type: object
+            properties:
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.DeptTree'
+        api.admin.v1.ListDictDataReply:
+            type: object
+            properties:
+                total:
+                    type: integer
+                    format: int32
+                pageNum:
+                    type: integer
+                    format: int32
+                pageSize:
+                    type: integer
+                    format: int32
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.DictDataContent'
+        api.admin.v1.ListDictTypeReply:
+            type: object
+            properties:
+                total:
+                    type: integer
+                    format: int32
+                pageNum:
+                    type: integer
+                    format: int32
+                pageSize:
+                    type: integer
+                    format: int32
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.DictTypeContent'
+        api.admin.v1.ListMenusReply:
+            type: object
+            properties:
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.MenuTree'
+        api.admin.v1.ListPostReply:
+            type: object
+            properties:
+                total:
+                    type: integer
+                    format: int32
+                pageNum:
+                    type: integer
+                    format: int32
+                pageSize:
+                    type: integer
+                    format: int32
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.PostData'
+        api.admin.v1.ListRolesReply:
+            type: object
+            properties:
+                total:
+                    type: integer
+                    format: int32
+                pageNum:
+                    type: integer
+                    format: int32
+                pageSize:
+                    type: integer
+                    format: int32
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.RoleData'
+        api.admin.v1.ListSysuserReply:
+            type: object
+            properties:
+                total:
+                    type: integer
+                    format: int32
+                pageNum:
+                    type: integer
+                    format: int32
+                pageSize:
+                    type: integer
+                    format: int32
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.UserData'
+        api.admin.v1.LoginReply:
+            type: object
+            properties:
+                token:
+                    type: string
+                expire:
+                    type: integer
+                    format: int64
+        api.admin.v1.LoginRequest:
+            type: object
+            properties:
+                username:
+                    type: string
+                password:
+                    type: string
+                code:
+                    type: string
+        api.admin.v1.LogoutReply:
+            type: object
+            properties: {}
+        api.admin.v1.LogoutRequest:
+            type: object
+            properties: {}
+        api.admin.v1.MenuLabel:
+            type: object
+            properties:
+                menuId:
+                    type: integer
+                    format: int32
+                menuName:
+                    type: string
+                children:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.MenuLabel'
+        api.admin.v1.MenuTree:
+            type: object
+            properties:
+                menuId:
+                    type: integer
+                    format: int64
+                menuName:
+                    type: string
+                title:
+                    type: string
+                parentId:
+                    type: integer
+                    format: int64
+                sort:
+                    type: integer
+                    format: int32
+                icon:
+                    type: string
+                path:
+                    type: string
+                component:
+                    type: string
+                isIframe:
+                    type: integer
+                    format: int32
+                link:
+                    type: string
+                menuType:
+                    type: string
+                hidden:
+                    type: integer
+                    format: int32
+                keepAlive:
+                    type: integer
+                    format: int32
+                isAffix:
+                    type: integer
+                    format: int32
+                permission:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                createBy:
+                    type: string
+                updateBy:
+                    type: string
+                remark:
+                    type: string
+                children:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.MenuTree'
+                createTime:
+                    type: string
+                    format: date-time
+                updateTime:
+                    type: string
+                    format: date-time
+        api.admin.v1.MenuTreeAuth:
+            type: object
+            properties:
+                name:
+                    type: string
+                path:
+                    type: string
+                redirect:
+                    type: string
+                component:
+                    type: string
+                meta:
+                    $ref: '#/components/schemas/api.admin.v1.MenuTreeMeta'
+                children:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.MenuTreeAuth'
+                parentId:
+                    type: integer
+                    format: int64
+        api.admin.v1.MenuTreeMeta:
+            type: object
+            properties:
+                title:
+                    type: string
+                isLink:
+                    type: string
+                isHide:
+                    type: boolean
+                isKeepAlive:
+                    type: boolean
+                isAffix:
+                    type: boolean
+                isIframe:
+                    type: boolean
+                auth:
+                    type: array
+                    items:
+                        type: string
+                icon:
+                    type: string
+        api.admin.v1.PostData:
+            type: object
+            properties:
+                postId:
+                    type: integer
+                    format: int64
+                postName:
+                    type: string
+                postCode:
+                    type: string
+                sort:
+                    type: integer
+                    format: int32
+                status:
+                    type: integer
+                    format: int32
+                remark:
+                    type: string
+                createBy:
+                    type: string
+                updateBy:
+                    type: string
+                createTime:
+                    type: string
+                    format: date-time
+                updateTime:
+                    type: string
+                    format: date-time
+        api.admin.v1.RoleData:
+            type: object
+            properties:
+                roleId:
+                    type: integer
+                    format: int64
+                roleName:
+                    type: string
+                status:
+                    type: integer
+                    format: int64
+                roleKey:
+                    type: string
+                roleSort:
+                    type: integer
+                    format: int32
+                dataScope:
+                    type: integer
+                    format: int64
+                createBy:
+                    type: string
+                updateBy:
+                    type: string
+                remark:
+                    type: string
+                menuIds:
+                    type: array
+                    items:
+                        type: integer
+                        format: int32
+                createTime:
+                    type: string
+                    format: date-time
+                updateTime:
+                    type: string
+                    format: date-time
+        api.admin.v1.RoleDeptTreeSelectReply:
+            type: object
+            properties:
+                checkedKeys:
+                    type: array
+                    items:
+                        type: integer
+                        format: int32
+                depts:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.DeptLabel'
+        api.admin.v1.RoleMenuTreeSelectReply:
+            type: object
+            properties:
+                checkedKeys:
+                    type: array
+                    items:
+                        type: integer
+                        format: int32
+                menus:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.MenuLabel'
+        api.admin.v1.SimpleMenu:
+            type: object
+            properties:
+                menuId:
+                    type: integer
+                    format: int64
+                menuName:
+                    type: string
+                children:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.SimpleMenu'
+        api.admin.v1.UpdateApiReply:
+            type: object
+            properties: {}
+        api.admin.v1.UpdateApiRequest:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int64
+                path:
+                    type: string
+                description:
+                    type: string
+                apiGroup:
+                    type: string
+                method:
+                    type: string
+        api.admin.v1.UpdateDeptReply:
+            type: object
+            properties: {}
+        api.admin.v1.UpdateDeptRequest:
+            type: object
+            properties:
+                deptId:
+                    type: integer
+                    format: int64
+                parentId:
+                    type: integer
+                    format: int64
+                deptName:
+                    type: string
+                leader:
+                    type: string
+                phone:
+                    type: string
+                email:
+                    type: string
+                status:
+                    type: integer
+                    format: int64
+                sort:
+                    type: integer
+                    format: int32
+        api.admin.v1.UpdateDictDataReply:
+            type: object
+            properties:
+                dictCode:
+                    type: integer
+                    format: int64
+        api.admin.v1.UpdateDictDataRequest:
+            type: object
+            properties:
+                dictCode:
+                    type: integer
+                    format: int64
+                dictSort:
+                    type: integer
+                    format: int32
+                dictLabel:
+                    type: string
+                dictValue:
+                    type: string
+                dictType:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                cssClass:
+                    type: string
+                listClass:
+                    type: string
+                isDefault:
+                    type: string
+                createBy:
+                    type: string
+                updateBy:
+                    type: string
+                remark:
+                    type: string
+                createTime:
+                    type: string
+                    format: date-time
+                updateTime:
+                    type: string
+                    format: date-time
+        api.admin.v1.UpdateDictTypeReply:
+            type: object
+            properties:
+                dictId:
+                    type: integer
+                    format: int64
+        api.admin.v1.UpdateDictTypeRequest:
+            type: object
+            properties:
+                dictId:
+                    type: integer
+                    format: uint32
+                dictName:
+                    type: string
+                dictType:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                createBy:
+                    type: string
+                updateBy:
+                    type: string
+                remark:
+                    type: string
+                createTime:
+                    type: string
+                    format: date-time
+                updateTime:
+                    type: string
+                    format: date-time
+        api.admin.v1.UpdateMenusReply:
+            type: object
+            properties:
+                menus:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.MenuTree'
+                permissions:
+                    type: array
+                    items:
+                        type: string
+        api.admin.v1.UpdateMenusRequest:
+            type: object
+            properties:
+                menuId:
+                    type: integer
+                    format: int64
+                menuName:
+                    type: string
+                title:
+                    type: string
+                parentId:
+                    type: integer
+                    format: int32
+                sort:
+                    type: integer
+                    format: int32
+                icon:
+                    type: string
+                path:
+                    type: string
+                component:
+                    type: string
+                isIframe:
+                    type: integer
+                    format: int32
+                isLink:
+                    type: string
+                menuType:
+                    type: string
+                isHide:
+                    type: integer
+                    format: int64
+                isKeepAlive:
+                    type: integer
+                    format: int32
+                isAffix:
+                    type: integer
+                    format: int32
+                permission:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                remark:
+                    type: string
+        api.admin.v1.UpdatePasswordReply:
+            type: object
+            properties: {}
+        api.admin.v1.UpdatePasswordRequest:
+            type: object
+            properties:
+                newPassword:
+                    type: string
+                oldPassword:
+                    type: string
+        api.admin.v1.UpdatePostReply:
+            type: object
+            properties: {}
+        api.admin.v1.UpdatePostRequest:
+            type: object
+            properties:
+                postId:
+                    type: integer
+                    format: int64
+                postName:
+                    type: string
+                postCode:
+                    type: string
+                sort:
+                    type: integer
+                    format: int32
+                status:
+                    type: integer
+                    format: int32
+                remark:
+                    type: string
+        api.admin.v1.UpdateRolesReply:
+            type: object
+            properties: {}
+        api.admin.v1.UpdateRolesRequest:
+            type: object
+            properties:
+                roleName:
+                    type: string
+                roleKey:
+                    type: string
+                sort:
+                    type: integer
+                    format: int32
+                status:
+                    type: integer
+                    format: int32
+                remark:
+                    type: string
+                dataScope:
+                    type: integer
+                    format: int32
+                menuIds:
+                    type: array
+                    items:
+                        type: integer
+                        format: int64
+                apiIds:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.admin.v1.ApiBase'
+                parentId:
+                    type: integer
+                    format: int64
+                defaultRouter:
+                    type: string
+                roleId:
+                    type: integer
+                    format: int64
+        api.admin.v1.UpdateSysuserReply:
+            type: object
+            properties: {}
+        api.admin.v1.UpdateSysuserRequest:
+            type: object
+            properties:
+                userId:
+                    type: integer
+                    format: int64
+                nickName:
+                    type: string
+                phone:
+                    type: string
+                roleId:
+                    type: integer
+                    format: int64
+                salt:
+                    type: string
+                avatar:
+                    type: string
+                sex:
+                    type: integer
+                    format: int32
+                email:
+                    type: string
+                deptId:
+                    type: integer
+                    format: int64
+                postId:
+                    type: integer
+                    format: int64
+                roleIds:
+                    type: string
+                postIds:
+                    type: string
+                createBy:
+                    type: string
+                updateBy:
+                    type: string
+                remark:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                createdAt:
+                    type: string
+                    format: date-time
+                updatedAt:
+                    type: string
+                    format: date-time
+                username:
+                    type: string
+                password:
+                    type: string
+                roleName:
+                    type: string
+                secret:
+                    type: string
+        api.admin.v1.UserData:
+            type: object
+            properties:
+                userId:
+                    type: integer
+                    format: int64
+                nickName:
+                    type: string
+                phone:
+                    type: string
+                roleId:
+                    type: integer
+                    format: int32
+                salt:
+                    type: string
+                avatar:
+                    type: string
+                sex:
+                    type: integer
+                    format: int64
+                email:
+                    type: string
+                deptId:
+                    type: integer
+                    format: int32
+                postId:
+                    type: integer
+                    format: int32
+                roleIds:
+                    type: string
+                postIds:
+                    type: string
+                createBy:
+                    type: string
+                updateBy:
+                    type: string
+                remark:
+                    type: string
+                status:
+                    type: integer
+                    format: int32
+                username:
+                    type: string
+                password:
+                    type: string
+                roleName:
+                    type: string
+                deptName:
+                    type: string
+                createTime:
+                    type: string
+                    format: date-time
+                updateTime:
+                    type: string
+                    format: date-time
+                secret:
+                    type: string
+                qrcode:
+                    type: string
+        google.protobuf.Any:
+            type: object
+            properties:
+                '@type':
+                    type: string
+                    description: The type of the serialized message.
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+tags:
+    - name: Api
+      description: api管理
+    - name: Dept
+      description: 部门管理
+    - name: DictData
+    - name: DictType
+    - name: Menus
+      description: 菜单管理
+    - name: Roles
+      description: 角色管理
+    - name: SysPost
+      description: 岗位管理
+    - name: Sysuser
+      description: 用户管理

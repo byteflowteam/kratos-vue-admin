@@ -1,0 +1,7 @@
+openapi_options:
+  file:
+    -
+      file: "sysuser.proto"
+      option:
+          info:
+            title: "fengyin"

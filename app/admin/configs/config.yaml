@@ -1,0 +1,32 @@
+server:
+  env: "dev"
+  http:
+    addr: 0.0.0.0:8001
+    timeout: 60s
+  grpc:
+    addr: 0.0.0.0:9001
+    timeout: 1s
+data:
+  database:
+    driver: mysql
+    source: root:123456@tcp(192.168.2.121:13306)/im_admin?charset=utf8mb4&parseTime=True&loc=Local
+    maxIdleConns: 10
+    maxOpenConns: 20
+    logLevel: 'info'
+  redis:
+    addr: 192.168.2.121:16379
+    max_idle: "128"
+    max_active: "0"
+    idle_timeout: "120"
+    read_timeout: 0.2s
+    write_timeout: 0.2s
+    username:
+    password: "123456"
+    database: 6
+
+auth:
+  jwtKey: hijbcdefgklmna2324
+  expires: 259200s # 259200 = 3天
+
+casbin:
+  path: ../../configs/authz/casbin_model.conf

@@ -1,0 +1,168 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "base.proto";
+
+package api.admin.v1;
+
+option go_package = "fengyin/api/admin/v1;v1";
+
+// 菜单管理
+service Menus {
+  // 创建菜单
+  rpc CreateMenus (CreateMenusRequest) returns (CreateMenusReply){
+    option (google.api.http) = {
+      post: "/system/menu"
+      body: "*"
+    };
+  };
+
+  // 菜单列表
+  rpc ListMenus (ListMenusRequest) returns (ListMenusReply){
+    option (google.api.http) = {
+      get: "/system/menu/list"
+    };
+  };
+
+  // 获取菜单关系结构
+  rpc GetMenusTree (GetMenusTreeRequest) returns (GetMenusTreeReply){
+    option (google.api.http) = {
+      get: "/system/menu/menuTreeSelect"
+    };
+  };
+
+  // 更新菜单
+  rpc UpdateMenus (UpdateMenusRequest) returns (UpdateMenusReply){
+    option (google.api.http) = {
+      put: "/system/menu"
+      body: "*"
+    };
+  };
+
+  // 删除菜单
+  rpc DeleteMenus (DeleteMenusRequest) returns (DeleteMenusReply){
+    option (google.api.http) = {
+      delete: "/system/menu/{id}"
+    };
+  };
+  // 获取菜单
+  rpc GetMenus (GetMenusRequest) returns (GetMenusReply){
+    option (google.api.http) = {
+      get: "/system/menu/{id}"
+    };
+  };
+  // 获取角色菜单树
+  rpc RoleMenuTreeSelect (RoleMenuTreeSelectRequest) returns (RoleMenuTreeSelectReply){
+    option (google.api.http) = {
+      get: "/system/menu/roleMenuTreeSelect/{roleId}"
+    };
+  };
+}
+
+message RoleMenuTreeSelectRequest {
+  int64 roleId = 1;
+}
+message RoleMenuTreeSelectReply {
+  repeated int32 checkedKeys = 1;
+  repeated MenuLabel menus = 2;
+}
+
+message MenuLabel {
+  int32 menuId = 1;
+  string menuName = 2;
+  repeated MenuLabel children = 3;
+}
+
+message CreateMenusRequest {
+  string menuName = 2;
+  string title = 3;
+  int32 parentId = 4;
+  int32 sort = 5;
+  string icon = 6;
+  string path = 7;
+  string component = 8;
+  int32 isIframe = 9;
+  string isLink = 10;
+  string menuType = 11;
+  int64 isHide = 12;
+  int32 isKeepAlive = 13;
+  int32 isAffix = 14;
+  string permission = 15;
+  int32 status = 16;
+  string remark = 19;
+}
+message CreateMenusReply {
+  repeated MenuTree menus = 1;
+  repeated string permissions = 2;
+}
+
+message UpdateMenusRequest {
+  int64 menuId = 1;
+  string menuName = 2;
+  string title = 3;
+  int32 parentId = 4;
+  int32 sort = 5;
+  string icon = 6;
+  string path = 7;
+  string component = 8;
+  int32 isIframe = 9;
+  string isLink = 10;
+  string menuType = 11;
+  int64 isHide = 12;
+  int32 isKeepAlive = 13;
+  int32 isAffix = 14;
+  string permission = 15;
+  int32 status = 16;
+  string remark = 19;
+}
+message UpdateMenusReply {
+  repeated MenuTree menus = 1;
+  repeated string permissions = 2;
+}
+
+message DeleteMenusRequest {
+  int64 id = 1;
+}
+message DeleteMenusReply {
+}
+
+message GetMenusRequest {
+  int64 id = 1;
+}
+message GetMenusReply {
+  int32 menuId = 1;
+  string menuName = 2;
+  string title = 3;
+  int32 parentId = 4;
+  int32 sort = 5;
+  string icon = 6;
+  string path = 7;
+  string component = 8;
+  int32 isIframe = 9;
+  string isLink = 10;
+  string menuType = 11;
+  int64 isHide = 12;
+  int32 isKeepAlive = 13;
+  int32 isAffix = 14;
+  string permission = 15;
+  int32 status = 16;
+  string createBy = 17;
+  string updateBy = 18;
+  string remark = 19;
+  google.protobuf.Timestamp createdAt = 21;
+  google.protobuf.Timestamp updatedAt = 22;
+}
+
+message ListMenusRequest {
+  string menuName = 1;
+  int32 status = 2;
+}
+message ListMenusReply {
+  repeated MenuTree list = 1;
+}
+
+message GetMenusTreeRequest{};
+message GetMenusTreeReply{
+  repeated SimpleMenu list = 1;
+};
