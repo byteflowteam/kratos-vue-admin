@@ -30,3 +30,15 @@ auth:
 
 casbin:
   path: ../../configs/authz/casbin_model.conf
+
+oss:
+  use: local
+  local:
+    dir: ../../../../static
+  aliyun:
+    endpoint: ""
+    accessKey: ""
+    accessSecret: ""
+    bucketName: ""
+    bucketURL: ""
+    imgDomain: ""
