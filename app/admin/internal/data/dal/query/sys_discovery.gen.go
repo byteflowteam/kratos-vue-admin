@@ -16,7 +16,7 @@ import (
 
 	"gorm.io/plugin/dbresolver"
 
-	"github.com/byteflowteam/kratos-vue-admin/app/admin/internal/data/"
+	"github.com/byteflowteam/kratos-vue-admin/app/admin/internal/data/dal/model"
 )
 
 func newSysDiscovery(db *gorm.DB, opts ...gen.DOOption) sysDiscovery {

@@ -38,7 +38,7 @@ func (r *sysRoleRepo) Delete(ctx context.Context, ids ...int64) error {
 
 func (r *sysRoleRepo) Update(ctx context.Context, role *model.SysRole) error {
 	q := r.data.Query(ctx).SysRole
-	_, err := q.WithContext(ctx).Select(q.UpdatedAt, q.Sort, q.DefaultRouter, q.RoleName, q.RoleKey, q.Status, q.DataScope, q.Remark).Where(q.ID.Eq(role.ID)).Updates(role)
+	_, err := q.WithContext(ctx).Select(q.UpdatedAt, q.RoleSort, q.DefaultRouter, q.RoleName, q.RoleKey, q.Status, q.DataScope, q.Remark).Where(q.ID.Eq(role.ID)).Updates(role)
 	return err
 }
 
