@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"github.com/byteflowteam/kratos-vue-admin/pkg/common/constant"
 	"github.com/go-kratos/kratos/v2/log"
 
 	pb "github.com/byteflowteam/kratos-vue-admin/api/admin/v1"
@@ -311,10 +312,15 @@ func (s *SysuserService) Auth(ctx context.Context, req *pb.AuthRequest) (*pb.Aut
 		return nil, err
 	}
 
-	menus, err := s.roleMenuCase.SelectMenuRole(ctx, role.RoleName)
-
-	if err != nil {
-		return nil, err
+	var menus []*pb.MenuTree
+	// 被禁用了，菜单显示空
+	if role.Status == constant.StatusMenusForbidden {
+		menus = make([]*pb.MenuTree, 0)
+	} else {
+		menus, err = s.roleMenuCase.SelectMenuRole(ctx, role.RoleName)
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	pbUser := &pb.AuthReply_User{
