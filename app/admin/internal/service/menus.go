@@ -260,14 +260,13 @@ func convertToMenuTree(sysMenus []*model.SysMenu) []*pb.MenuTree {
 
 	// 构建 MenuTree 的层级关系
 	var rootMenuTrees []*pb.MenuTree
-	for _, menuTree := range menuMap {
-		parentID := menuTree.ParentId
-		if parentID == 0 {
-			rootMenuTrees = append(rootMenuTrees, menuTree)
+	for _, menu := range sysMenus {
+		if menu.ParentID == 0 {
+			rootMenuTrees = append(rootMenuTrees, menuMap[menu.ID])
 		} else {
-			parentMenuTree, ok := menuMap[parentID]
+			parentMenuTree, ok := menuMap[menu.ParentID]
 			if ok {
-				parentMenuTree.Children = append(parentMenuTree.Children, menuTree)
+				parentMenuTree.Children = append(parentMenuTree.Children, menuMap[menu.ID])
 			}
 		}
 	}

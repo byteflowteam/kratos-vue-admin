@@ -61,7 +61,7 @@ func (m *sysMenuRepo) FindByNameStatus(ctx context.Context, name string, status 
 	if status != 0 {
 		db = db.Where(q.Status.Eq(status))
 	}
-	return db.Find()
+	return db.Order(q.Sort).Find()
 }
 
 // GetRoleMenuId 获取角色对应的菜单ids
