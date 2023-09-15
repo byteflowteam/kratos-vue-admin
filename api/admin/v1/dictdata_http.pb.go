@@ -44,7 +44,7 @@ func RegisterDictDataHTTPServer(s *http.Server, srv DictDataHTTPServer) {
 	r.POST("/system/dict/data", _DictData_CreateDictData0_HTTP_Handler(srv))
 	r.PUT("/system/dict/data", _DictData_UpdateDictData0_HTTP_Handler(srv))
 	r.DELETE("/system/dict/data/{dictCode}", _DictData_DeleteDictData0_HTTP_Handler(srv))
-	r.GET("/system/dict/data/{dictCode}", _DictData_GetDictData0_HTTP_Handler(srv))
+	r.GET("/system/dict/data/info/{dictCode}", _DictData_GetDictData0_HTTP_Handler(srv))
 }
 
 func _DictData_ListDictData0_HTTP_Handler(srv DictDataHTTPServer) func(ctx http.Context) error {
@@ -198,7 +198,7 @@ func (c *DictDataHTTPClientImpl) DeleteDictData(ctx context.Context, in *DeleteD
 
 func (c *DictDataHTTPClientImpl) GetDictData(ctx context.Context, in *GetDictDataRequest, opts ...http.CallOption) (*GetDictDataReply, error) {
 	var out GetDictDataReply
-	pattern := "/system/dict/data/{dictCode}"
+	pattern := "/system/dict/data/info/{dictCode}"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationDictDataGetDictData))
 	opts = append(opts, http.PathTemplate(pattern))

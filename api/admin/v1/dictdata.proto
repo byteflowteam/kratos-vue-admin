@@ -41,7 +41,7 @@ service DictData {
 	//获取信息
 	rpc GetDictData (GetDictDataRequest) returns (GetDictDataReply){
 		option (google.api.http) = {
-			get: "/system/dict/data/{dictCode}"
+			get: "/system/dict/data/info/{dictCode}"
 		};
 	};
 
