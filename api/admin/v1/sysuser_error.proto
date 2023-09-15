@@ -29,4 +29,8 @@ enum SysUserErrorReason {
 
   BizError_API = 8 [(errors.code) = 204];
 
+  ACCOUNT_FORBIDDEN = 9 [(errors.code) = 200];
+
+  ROLE_BIND_ACCOUNT = 10 [(errors.code) = 200];
+
 }

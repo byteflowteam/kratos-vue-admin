@@ -120,3 +120,27 @@ func IsBizErrorApi(err error) bool {
 func ErrorBizErrorApi(format string, args ...interface{}) *errors.Error {
 	return errors.New(204, SysUserErrorReason_BizError_API.String(), fmt.Sprintf(format, args...))
 }
+
+func IsAccountForbidden(err error) bool {
+	if err == nil {
+		return false
+	}
+	e := errors.FromError(err)
+	return e.Reason == SysUserErrorReason_ACCOUNT_FORBIDDEN.String() && e.Code == 200
+}
+
+func ErrorAccountForbidden(format string, args ...interface{}) *errors.Error {
+	return errors.New(200, SysUserErrorReason_ACCOUNT_FORBIDDEN.String(), fmt.Sprintf(format, args...))
+}
+
+func IsRoleBindAccount(err error) bool {
+	if err == nil {
+		return false
+	}
+	e := errors.FromError(err)
+	return e.Reason == SysUserErrorReason_ROLE_BIND_ACCOUNT.String() && e.Code == 200
+}
+
+func ErrorRoleBindAccount(format string, args ...interface{}) *errors.Error {
+	return errors.New(200, SysUserErrorReason_ROLE_BIND_ACCOUNT.String(), fmt.Sprintf(format, args...))
+}
