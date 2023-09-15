@@ -26,7 +26,7 @@ service DictData {
 	//更新
 	rpc UpdateDictData (UpdateDictDataRequest) returns (UpdateDictDataReply){
 		option (google.api.http) = {
-			put: "/system/dict/data/{dictCode}"
+			put: "/system/dict/data"
 			body:"*"
 		};
 	};
