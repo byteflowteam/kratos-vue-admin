@@ -33,4 +33,5 @@ enum SysUserErrorReason {
 
   ROLE_BIND_ACCOUNT = 10 [(errors.code) = 200];
 
+  ACCOUNT_EXISTED = 11 [(errors.code) = 200];
 }

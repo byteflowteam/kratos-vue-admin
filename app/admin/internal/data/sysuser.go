@@ -21,6 +21,12 @@ func NewSysUserRepo(data *Data, logger log.Logger) biz.SysUserRepo {
 	}
 }
 
+func (r *sysuserRepo) Create(ctx context.Context, g *model.SysUser) (*model.SysUser, error) {
+	q := r.data.Query(ctx).SysUser
+	err := q.WithContext(ctx).Clauses().Create(g)
+	return g, err
+}
+
 func (r *sysuserRepo) Save(ctx context.Context, g *model.SysUser) (*model.SysUser, error) {
 	q := r.data.Query(ctx).SysUser
 	err := q.WithContext(ctx).Clauses().Save(g)
