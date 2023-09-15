@@ -463,8 +463,8 @@ CREATE TABLE `sys_dict_data`  (
 INSERT INTO `sys_dict_data` VALUES (1, 0, '男', '0', 'sys_user_sex', 0, '', '', '', 'admin', '', '男', '2021-11-30 14:58:18', '2021-11-30 14:58:18', NULL);
 INSERT INTO `sys_dict_data` VALUES (2, 1, '女', '1', 'sys_user_sex', 0, '', '', '', 'admin', '', '女生', '2021-11-30 15:09:11', '2021-11-30 15:10:28', NULL);
 INSERT INTO `sys_dict_data` VALUES (3, 2, '未知', '2', 'sys_user_sex', 0, '', '', '', 'admin', '', '未知', '2021-11-30 15:09:11', '2021-11-30 15:10:28', NULL);
-INSERT INTO `sys_dict_data` VALUES (4, 0, '正常', '0', 'sys_normal_disable', 0, '', '', '', 'admin', '', '', '2021-12-01 15:58:50', '2021-12-01 15:58:50', NULL);
-INSERT INTO `sys_dict_data` VALUES (5, 1, '停用', '1', 'sys_normal_disable', 0, '', '', '', 'admin', '', '', '2021-12-01 15:59:08', '2021-12-01 15:59:08', NULL);
+INSERT INTO `sys_dict_data` VALUES (4, 0, '正常', '1', 'sys_normal_disable', 0, '', '', '', 'admin', '', '', '2021-12-01 15:58:50', '2021-12-01 15:58:50', NULL);
+INSERT INTO `sys_dict_data` VALUES (5, 1, '停用', '2', 'sys_normal_disable', 0, '', '', '', 'admin', '', '', '2021-12-01 15:59:08', '2021-12-01 15:59:08', NULL);
 INSERT INTO `sys_dict_data` VALUES (6, 0, '目录', 'M', 'sys_menu_type', 0, '', '', '', 'admin', '', '', '2021-12-02 09:49:12', '2021-12-02 09:49:12', NULL);
 INSERT INTO `sys_dict_data` VALUES (7, 1, '菜单', 'C', 'sys_menu_type', 0, '', '', '', 'admin', '', '', '2021-12-02 09:49:35', '2021-12-02 09:49:52', NULL);
 INSERT INTO `sys_dict_data` VALUES (8, 2, '按钮', 'F', 'sys_menu_type', 0, '', '', '', 'admin', '', '', '2021-12-02 09:49:35', '2021-12-02 09:49:35', NULL);
