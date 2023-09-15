@@ -31,7 +31,7 @@ message DeptTree {
 message RoleData {
   int64 roleId = 1;
   string roleName = 2;
-  int64 status = 3;
+  int32 status = 3;
   string roleKey = 4;
   int32 roleSort = 5;
   int64 dataScope = 6;
