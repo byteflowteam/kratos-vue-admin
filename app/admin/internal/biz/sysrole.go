@@ -160,7 +160,8 @@ func (r *SysRoleUseCase) DeleteRole(ctx context.Context, ids []int64) error {
 		}
 		if userCount > 0 {
 			r.log.Errorf("role: %d 存在用户无法删除", rid)
-			continue
+			// 返回一下错误提示
+			return pb.ErrorRoleBindAccount("改角色绑定了用户无法被删除")
 		}
 		delList = append(delList, rid)
 

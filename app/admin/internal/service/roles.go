@@ -36,7 +36,7 @@ func (r *RolesService) ListRoles(ctx context.Context, req *pb.ListRolesRequest) 
 		data[i] = &pb.RoleData{
 			RoleId:     d.ID,
 			RoleName:   d.RoleName,
-			Status:     int64(d.Status),
+			Status:     d.Status,
 			RoleKey:    d.RoleKey,
 			RoleSort:   d.RoleSort,
 			DataScope:  int64(d.DataScope),
@@ -69,7 +69,7 @@ func (r *RolesService) GetRoles(ctx context.Context, req *pb.GetRolesRequest) (*
 		Role: &pb.RoleData{
 			RoleId:     role.ID,
 			RoleName:   role.RoleName,
-			Status:     int64(role.Status),
+			Status:     role.Status,
 			RoleKey:    role.RoleKey,
 			RoleSort:   role.RoleSort,
 			DataScope:  int64(role.DataScope),
