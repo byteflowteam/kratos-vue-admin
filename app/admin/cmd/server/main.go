@@ -21,7 +21,7 @@ var (
 	Name string
 	// Version is the version of the compiled software.
 	Version string
-	// flagconf is the config flag.
+	// flag conf is the config flag.
 	flagconf string
 
 	id, _ = os.Hostname()
