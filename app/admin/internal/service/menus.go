@@ -173,7 +173,9 @@ func convertToSimpleMenu(sysMenus []*model.SysMenu) []*pb.SimpleMenu {
 			rootMenus = append(rootMenus, menu)
 		} else {
 			parentMenu := menuMap[sysMenu.ParentID]
-			parentMenu.Children = append(parentMenu.Children, menu)
+			if parentMenu != nil {
+				parentMenu.Children = append(parentMenu.Children, menu)
+			}
 		}
 	}
 
