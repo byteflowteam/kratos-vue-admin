@@ -463,15 +463,15 @@ CREATE TABLE `sys_dict_data`  (
 INSERT INTO `sys_dict_data` VALUES (1, 0, '男', '0', 'sys_user_sex', 1, '', '', '', 'admin', '', '男', '2021-11-30 14:58:18', '2021-11-30 14:58:18', NULL);
 INSERT INTO `sys_dict_data` VALUES (2, 1, '女', '1', 'sys_user_sex', 1, '', '', '', 'admin', '', '女生', '2021-11-30 15:09:11', '2021-11-30 15:10:28', NULL);
 INSERT INTO `sys_dict_data` VALUES (3, 2, '未知', '2', 'sys_user_sex', 1, '', '', '', 'admin', '', '未知', '2021-11-30 15:09:11', '2021-11-30 15:10:28', NULL);
-INSERT INTO `sys_dict_data` VALUES (4, 0, '正常', '1', 'sys_normal_disable', 1, '', '', '', 'admin', '', '', '2021-12-01 15:58:50', '2021-12-01 15:58:50', NULL);
-INSERT INTO `sys_dict_data` VALUES (5, 1, '停用', '2', 'sys_normal_disable', 1, '', '', '', 'admin', '', '', '2021-12-01 15:59:08', '2021-12-01 15:59:08', NULL);
+INSERT INTO `sys_dict_data` VALUES (4, 0, '正常', '1', 'sys_normal_disable', 1, '', '', '', '', 'admin', '', '2021-12-02 09:49:35', '2021-12-02 09:49:35', NULL);
+INSERT INTO `sys_dict_data` VALUES (5, 1, '停用', '2', 'sys_normal_disable', 1, '', '', '', '', 'admin', '', '2021-12-02 09:49:35', '2021-12-02 09:49:35', NULL);
 INSERT INTO `sys_dict_data` VALUES (6, 0, '目录', 'M', 'sys_menu_type', 1, '', '', '', 'admin', '', '', '2021-12-02 09:49:12', '2021-12-02 09:49:12', NULL);
 INSERT INTO `sys_dict_data` VALUES (7, 1, '菜单', 'C', 'sys_menu_type', 1, '', '', '', 'admin', '', '', '2021-12-02 09:49:35', '2021-12-02 09:49:52', NULL);
 INSERT INTO `sys_dict_data` VALUES (8, 2, '按钮', 'F', 'sys_menu_type', 1, '', '', '', 'admin', '', '', '2021-12-02 09:49:35', '2021-12-02 09:49:35', NULL);
-INSERT INTO `sys_dict_data` VALUES (9, 0, '显示', '0', 'sys_show_hide', 1, '', '', '', 'admin', '', '', '2021-12-02 09:56:40', '2021-12-02 09:56:40', NULL);
-INSERT INTO `sys_dict_data` VALUES (10, 0, '隐藏', '1', 'sys_show_hide', 1, '', '', '', 'admin', '', '', '2021-12-02 09:56:52', '2021-12-02 09:56:52', NULL);
-INSERT INTO `sys_dict_data` VALUES (11, 0, '是', '0', 'sys_num_yes_no', 1, '', '', '', 'admin', '', '', '2021-12-02 10:16:16', '2021-12-02 10:16:16', NULL);
-INSERT INTO `sys_dict_data` VALUES (12, 1, '否', '1', 'sys_num_yes_no', 1, '', '', '', 'admin', '', '', '2021-12-02 10:16:26', '2021-12-02 10:16:26', NULL);
+INSERT INTO `sys_dict_data` VALUES (9, 0, '显示', '1', 'sys_show_hide', 1, '', '', '', '', 'admin', '', '2021-12-02 09:49:35', '2021-12-02 09:49:35', NULL);
+INSERT INTO `sys_dict_data` VALUES (10, 0, '隐藏', '2', 'sys_show_hide', 1, '', '', '', '', 'admin', '', '2021-12-02 09:49:35', '2021-12-02 09:49:35', NULL);
+INSERT INTO `sys_dict_data` VALUES (11, 0, '是', '1', 'sys_num_yes_no', 1, '', '', '', '', 'admin', '', '2021-12-02 09:49:35', '2021-12-02 09:49:35', NULL);
+INSERT INTO `sys_dict_data` VALUES (12, 1, '否', '2', 'sys_num_yes_no', 1, '', '', '', '', 'admin', '', '2021-12-02 09:49:35', '2021-12-02 09:49:35', NULL);
 INSERT INTO `sys_dict_data` VALUES (13, 0, '是', '0', 'sys_yes_no', 1, '', '', '', 'admin', '', '', '2021-12-04 13:48:15', '2021-12-04 13:48:15', NULL);
 INSERT INTO `sys_dict_data` VALUES (14, 0, '否', '1', 'sys_yes_no', 1, '', '', '', 'admin', '', '', '2021-12-04 13:48:21', '2021-12-04 13:48:21', NULL);
 INSERT INTO `sys_dict_data` VALUES (15, 0, '创建(POST)', 'POST', 'sys_method_api', 1, '', '', '', 'admin', '', '', '2021-12-08 17:22:05', '2021-12-09 09:29:52', NULL);
@@ -640,55 +640,55 @@ CREATE TABLE `sys_menus`  (
 -- ----------------------------
 -- Records of sys_menus
 -- ----------------------------
-INSERT INTO `sys_menus` VALUES (1, '系统设置', '', 0, 1, 'elementSetting', '/system', 'Layout', 1, '', 'M', 1, 1, 1, '', 1, '', 'admin', '', '2021-12-02 11:04:08', '2023-09-07 10:29:24', NULL);
-INSERT INTO `sys_menus` VALUES (3, '用户管理', '', 1, 1, 'elementUser', '/system/user', '/system/user/index', 1, '', 'C', 0, 1, 1, 'system:user:list', 1, 'admin', 'panda', '', '2021-12-02 14:07:56', '2021-12-28 13:32:44', NULL);
-INSERT INTO `sys_menus` VALUES (4, '添加用户', '', 3, 1, '', '', '', 2, '', 'F', 1, 1, 1, 'system:user:add', 1, '', 'admin', '', '2021-12-03 13:36:33', '2023-08-31 15:41:25', NULL);
-INSERT INTO `sys_menus` VALUES (5, '编辑用户', '', 3, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:user:edit', 1, 'admin', '', '', '2021-12-03 13:48:13', '2021-12-03 13:48:13', NULL);
-INSERT INTO `sys_menus` VALUES (6, '角色管理', '', 1, 2, 'elementUserFilled', '/system/role', '/system/role/index', 1, '', 'C', 0, 1, 1, 'system:role:list', 1, '', 'panda', '', '2021-12-03 13:51:55', '2022-07-16 10:23:21', NULL);
-INSERT INTO `sys_menus` VALUES (7, '菜单管理', '', 1, 2, 'iconfont icon-juxingkaobei', '/system/menu', '/system/menu/index', 1, '', 'C', 0, 1, 1, 'system:menu:list', 1, 'admin', 'panda', '', '2021-12-03 13:54:44', '2021-12-28 13:33:19', NULL);
-INSERT INTO `sys_menus` VALUES (8, '组织管理', '', 1, 3, 'iconfont icon-jiliandongxuanzeqi', '/system/dept', '/system/dept/index', 1, '', 'C', 1, 1, 1, 'system:dept:list', 1, '', 'admin', '', '2021-12-03 13:58:36', '2023-09-04 14:39:44', NULL);
-INSERT INTO `sys_menus` VALUES (9, '岗位管理', '', 1, 4, 'iconfont icon-neiqianshujuchucun', '/system/post', '/system/post/index', 1, '', 'C', 1, 1, 1, 'system:post:list', 1, '', 'admin', '', '2021-12-03 13:54:44', '2023-09-07 10:16:11', NULL);
-INSERT INTO `sys_menus` VALUES (10, '字典管理', '', 1, 5, 'elementCellphone', '/system/dict', '/system/dict/index', 1, '', 'C', 0, 1, 1, 'system:dict:list', 1, 'admin', 'panda', '', '2021-12-03 13:54:44', '2021-12-28 13:40:50', NULL);
-INSERT INTO `sys_menus` VALUES (11, '参数管理', '', 1, 6, 'elementDocumentCopy', '/system/config', '/system/config/index', 1, '', 'C', 0, 1, 1, 'system:config:list', 1, 'admin', 'panda', '', '2021-12-03 13:54:44', '2021-12-28 13:41:05', NULL);
-INSERT INTO `sys_menus` VALUES (12, '个人中心', '', 5, 10, 'elementAvatar', '/personal', '/personal/index', 1, '', 'M', 1, 1, 1, '', 1, '', 'admin', '', '2021-12-03 14:12:43', '2023-09-04 10:52:30', NULL);
-INSERT INTO `sys_menus` VALUES (13, '添加配置', '', 11, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:config:add', 1, 'admin', '', '', '2021-12-06 17:19:19', '2021-12-06 17:19:19', NULL);
-INSERT INTO `sys_menus` VALUES (14, '修改配置', '', 11, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:config:edit', 1, 'admin', '', '', '2021-12-06 17:20:30', '2021-12-06 17:20:30', NULL);
-INSERT INTO `sys_menus` VALUES (15, '删除配置', '', 11, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:config:delete', 1, 'admin', '', '', '2021-12-06 17:23:52', '2021-12-06 17:23:52', NULL);
-INSERT INTO `sys_menus` VALUES (16, '导出配置', '', 11, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:config:export', 1, 'admin', '', '', '2021-12-06 17:24:41', '2021-12-06 17:24:41', NULL);
-INSERT INTO `sys_menus` VALUES (17, '新增角色', '', 6, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:role:add', 1, 'admin', '', '', '2021-12-06 17:43:35', '2021-12-06 17:43:35', NULL);
-INSERT INTO `sys_menus` VALUES (18, '删除角色', '', 6, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:role:delete', 1, 'admin', '', '', '2021-12-06 17:44:10', '2021-12-06 17:44:10', NULL);
-INSERT INTO `sys_menus` VALUES (19, '修改角色', '', 6, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:role:edit', 1, 'admin', '', '', '2021-12-06 17:44:48', '2021-12-06 17:44:48', NULL);
-INSERT INTO `sys_menus` VALUES (20, '导出角色', '', 6, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:role:export', 1, 'admin', '', '', '2021-12-06 17:45:25', '2021-12-06 17:45:25', NULL);
-INSERT INTO `sys_menus` VALUES (21, '添加菜单', '', 7, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:menu:add', 1, 'admin', '', '', '2021-12-06 17:46:01', '2021-12-06 17:46:01', NULL);
-INSERT INTO `sys_menus` VALUES (22, '修改菜单', '', 7, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:menu:edit', 1, 'admin', '', '', '2021-12-06 17:46:24', '2021-12-06 17:46:24', NULL);
-INSERT INTO `sys_menus` VALUES (23, '删除菜单', '', 7, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:menu:delete', 1, 'admin', '', '', '2021-12-06 17:46:47', '2021-12-06 17:46:47', NULL);
-INSERT INTO `sys_menus` VALUES (24, '添加部门', '', 8, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:dept:add', 1, 'admin', '', '', '2021-12-07 09:33:58', '2021-12-07 09:33:58', NULL);
-INSERT INTO `sys_menus` VALUES (25, '编辑部门', '', 8, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:dept:edit', 1, 'admin', '', '', '2021-12-07 09:34:39', '2021-12-07 09:34:39', NULL);
-INSERT INTO `sys_menus` VALUES (26, '删除部门', '', 8, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:dept:delete', 1, 'admin', 'admin', '', '2021-12-07 09:35:09', '2021-12-07 09:36:26', NULL);
-INSERT INTO `sys_menus` VALUES (28, '添加岗位', '', 9, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:post:add', 1, 'admin', '', '', '2021-12-07 09:35:09', '2021-12-07 09:35:09', NULL);
-INSERT INTO `sys_menus` VALUES (29, '编辑岗位', '', 9, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:post:edit', 1, 'admin', '', '', '2021-12-07 09:35:09', '2021-12-07 09:35:09', NULL);
-INSERT INTO `sys_menus` VALUES (30, '删除岗位', '', 9, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:post:delete', 1, 'admin', '', '', '2021-12-07 09:35:09', '2021-12-07 09:35:09', NULL);
-INSERT INTO `sys_menus` VALUES (31, '导出岗位', '', 9, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:post:export', 1, 'admin', '', '', '2021-12-07 09:35:09', '2021-12-07 09:35:09', NULL);
-INSERT INTO `sys_menus` VALUES (32, '添加字典类型', '', 10, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:dictT:add', 1, 'admin', '', '', '2021-12-07 09:35:09', '2021-12-07 09:35:09', NULL);
-INSERT INTO `sys_menus` VALUES (33, '编辑字典类型', '', 10, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:dictT:edit', 1, 'admin', '', '', '2021-12-07 09:35:09', '2021-12-07 09:35:09', NULL);
-INSERT INTO `sys_menus` VALUES (34, '删除字典类型', '', 10, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:dictT:delete', 1, 'admin', '', '', '2021-12-07 09:35:09', '2021-12-07 09:35:09', NULL);
-INSERT INTO `sys_menus` VALUES (35, '导出字典类型', '', 10, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:dictT:export', 1, 'admin', '', '', '2021-12-07 09:35:09', '2021-12-07 09:35:09', NULL);
-INSERT INTO `sys_menus` VALUES (36, '新增字典数据', '', 10, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:dictD:add', 1, 'admin', '', '', '2021-12-07 09:35:09', '2021-12-07 09:35:09', NULL);
-INSERT INTO `sys_menus` VALUES (37, '修改字典数据', '', 10, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:dictD:edit', 1, 'admin', '', '', '2021-12-07 09:48:04', '2021-12-07 09:48:04', NULL);
-INSERT INTO `sys_menus` VALUES (38, '删除字典数据', '', 10, 1, '', '', '', 0, '', 'F', 0, 0, 0, 'system:dictD:delete', 1, 'admin', '', '', '2021-12-07 09:48:42', '2021-12-07 09:48:42', NULL);
-INSERT INTO `sys_menus` VALUES (39, 'API管理', '', 1, 2, 'iconfont icon-siweidaotu', '/system/api', '/system/api/index', 1, '', 'C', 0, 1, 1, 'system:api:list', 1, '', 'panda', '', '2021-12-09 09:09:13', '2022-07-16 10:23:42', NULL);
-INSERT INTO `sys_menus` VALUES (40, '添加api', '', 39, 1, '', '/system/api', '', 0, '', 'F', 0, 0, 0, 'system:api:add', 1, 'admin', '', '', '2021-12-09 09:09:54', '2021-12-09 09:09:54', NULL);
-INSERT INTO `sys_menus` VALUES (41, '编辑api', '', 39, 1, '', '/system/api', '', 0, '', 'F', 0, 0, 0, 'system:api:edit', 1, 'admin', '', '', '2021-12-09 09:10:38', '2021-12-09 09:10:38', NULL);
-INSERT INTO `sys_menus` VALUES (42, '删除api', '', 39, 1, '', '/system/api', '', 0, '', 'F', 0, 0, 0, 'system:api:delete', 1, 'admin', '', '', '2021-12-09 09:11:11', '2021-12-09 09:11:11', NULL);
-INSERT INTO `sys_menus` VALUES (43, 'im用户管理', '', 0, 2, 'elementUser', '', 'Layout', 2, '', 'M', 1, 1, 1, '', 1, '', 'admin', '', '2023-09-06 15:22:10', '2023-09-07 10:33:27', '2023-09-07 16:29:34');
-INSERT INTO `sys_menus` VALUES (44, '产品配置', '', 0, 3, 'elementSetUp', '', 'Layout', 2, '', 'M', 1, 1, 1, '', 1, '', 'admin', '', '2023-09-06 16:49:18', '2023-09-06 17:05:34', NULL);
-INSERT INTO `sys_menus` VALUES (45, '群组管理', '', 0, 4, 'elementAvatar', '', 'Layout', 2, '', 'M', 1, 1, 1, '', 1, '', 'admin', '', '2023-09-06 16:53:42', '2023-09-06 17:05:56', NULL);
-INSERT INTO `sys_menus` VALUES (46, '消息管理', '', 0, 5, 'elementMessage', '/msg/index', '/msg/index', 1, '', 'M', 1, 1, 1, 'system:msg', 1, '', 'admin', '', '2023-09-06 16:54:06', '2023-09-07 11:00:07', NULL);
-INSERT INTO `sys_menus` VALUES (47, '系统消息', '', 0, 6, 'elementMessageBox', '', 'Layout', 2, '', 'M', 1, 1, 1, '', 1, '', 'admin', '', '2023-09-06 16:54:37', '2023-09-06 17:03:51', NULL);
-INSERT INTO `sys_menus` VALUES (48, '敏感词管理', '', 0, 7, 'elementInfoFilled', '', 'Layout', 2, '', 'M', 1, 1, 1, '', 1, '', 'admin', '', '2023-09-06 16:58:56', '2023-09-06 17:04:18', '2023-09-07 16:29:41');
-INSERT INTO `sys_menus` VALUES (49, '操作日志', '', 0, 8, 'elementComment', '', 'Layout', 2, '', 'M', 1, 1, 1, '', 1, '', 'admin', '', '2023-09-06 16:59:13', '2023-09-06 17:04:42', NULL);
-INSERT INTO `sys_menus` VALUES (50, '反馈管理', '', 0, 9, 'elementEdit', '', 'Layout', 2, '', 'M', 1, 1, 1, '', 1, '', 'admin', '', '2023-09-06 16:59:32', '2023-09-06 17:07:32', NULL);
-INSERT INTO `sys_menus` VALUES (51, '私聊消息', '', 46, 1, 'iconfont icon-tongzhi1', '/msg/single_list', '/msg/single_list', 1, '', 'C', 0, 1, 1, 'system:msg:index', 1, '', 'admin', '', '2023-09-07 10:52:10', '2023-09-07 10:59:30', NULL);
+INSERT INTO `sys_menus` VALUES (1, '系统设置', '', 0, 1, 'elementSetting', '/system', 'Layout', 2, '', 'M', 1, 2, 2, '', 1, '', 'admin', '', '2021-12-02 11:04:08', '2023-09-07 10:29:24', NULL);
+INSERT INTO `sys_menus` VALUES (3, '用户管理', '', 1, 1, 'elementUser', '/system/user', '/system/user/index', 2, '', 'C', 1, 2, 2, 'system:user:list', 1, 'admin', 'panda', '', '2021-12-02 14:07:56', '2021-12-28 13:32:44', NULL);
+INSERT INTO `sys_menus` VALUES (4, '添加用户', '', 3, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:user:add', 1, '', 'admin', '', '2021-12-03 13:36:33', '2023-08-31 15:41:25', NULL);
+INSERT INTO `sys_menus` VALUES (5, '编辑用户', '', 3, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:user:edit', 1, 'admin', '', '', '2021-12-03 13:48:13', '2021-12-03 13:48:13', NULL);
+INSERT INTO `sys_menus` VALUES (6, '角色管理', '', 1, 2, 'elementUserFilled', '/system/role', '/system/role/index', 2, '', 'C', 1, 2, 2, 'system:role:list', 1, '', 'panda', '', '2021-12-03 13:51:55', '2022-07-16 10:23:21', NULL);
+INSERT INTO `sys_menus` VALUES (7, '菜单管理', '', 1, 2, 'iconfont icon-juxingkaobei', '/system/menu', '/system/menu/index', 2, '', 'C', 1, 2, 2, 'system:menu:list', 1, 'admin', 'panda', '', '2021-12-03 13:54:44', '2021-12-28 13:33:19', NULL);
+INSERT INTO `sys_menus` VALUES (8, '组织管理', '', 1, 3, 'iconfont icon-jiliandongxuanzeqi', '/system/dept', '/system/dept/index', 2, '', 'C', 1, 2, 2, 'system:dept:list', 1, '', 'admin', '', '2021-12-03 13:58:36', '2023-09-19 09:55:06', NULL);
+INSERT INTO `sys_menus` VALUES (9, '岗位管理', '', 1, 4, 'iconfont icon-neiqianshujuchucun', '/system/post', '/system/post/index', 2, '', 'C', 1, 2, 2, 'system:post:list', 1, '', 'admin', '', '2021-12-03 13:54:44', '2023-09-07 10:16:11', NULL);
+INSERT INTO `sys_menus` VALUES (10, '字典管理', '', 1, 5, 'elementCellphone', '/system/dict', '/system/dict/index', 2, '', 'C', 1, 2, 2, 'system:dict:list', 1, 'admin', 'panda', '', '2021-12-03 13:54:44', '2021-12-28 13:40:50', NULL);
+INSERT INTO `sys_menus` VALUES (11, '参数管理', '', 1, 6, 'elementDocumentCopy', '/system/config', '/system/config/index', 2, '', 'C', 1, 2, 2, 'system:config:list', 1, 'admin', 'panda', '', '2021-12-03 13:54:44', '2021-12-28 13:41:05', NULL);
+INSERT INTO `sys_menus` VALUES (12, '个人中心', '', 5, 10, 'elementAvatar', '/personal', '/personal/index', 2, '', 'M', 1, 2, 2, '', 1, '', 'admin', '', '2021-12-03 14:12:43', '2023-09-04 10:52:30', NULL);
+INSERT INTO `sys_menus` VALUES (13, '添加配置', '', 11, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:config:add', 1, 'admin', '', '', '2021-12-06 17:19:19', '2021-12-06 17:19:19', NULL);
+INSERT INTO `sys_menus` VALUES (14, '修改配置', '', 11, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:config:edit', 1, 'admin', '', '', '2021-12-06 17:20:30', '2021-12-06 17:20:30', NULL);
+INSERT INTO `sys_menus` VALUES (15, '删除配置', '', 11, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:config:delete', 1, 'admin', '', '', '2021-12-06 17:23:52', '2021-12-06 17:23:52', NULL);
+INSERT INTO `sys_menus` VALUES (16, '导出配置', '', 11, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:config:export', 1, 'admin', '', '', '2021-12-06 17:24:41', '2021-12-06 17:24:41', NULL);
+INSERT INTO `sys_menus` VALUES (17, '新增角色', '', 6, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:role:add', 1, 'admin', '', '', '2021-12-06 17:43:35', '2021-12-06 17:43:35', NULL);
+INSERT INTO `sys_menus` VALUES (18, '删除角色', '', 6, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:role:delete', 1, 'admin', '', '', '2021-12-06 17:44:10', '2021-12-06 17:44:10', NULL);
+INSERT INTO `sys_menus` VALUES (19, '修改角色', '', 6, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:role:edit', 1, 'admin', '', '', '2021-12-06 17:44:48', '2021-12-06 17:44:48', NULL);
+INSERT INTO `sys_menus` VALUES (20, '导出角色', '', 6, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:role:export', 1, 'admin', '', '', '2021-12-06 17:45:25', '2021-12-06 17:45:25', NULL);
+INSERT INTO `sys_menus` VALUES (21, '添加菜单', '', 7, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:menu:add', 1, 'admin', '', '', '2021-12-06 17:46:01', '2021-12-06 17:46:01', NULL);
+INSERT INTO `sys_menus` VALUES (22, '修改菜单', '', 7, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:menu:edit', 1, 'admin', '', '', '2021-12-06 17:46:24', '2021-12-06 17:46:24', NULL);
+INSERT INTO `sys_menus` VALUES (23, '删除菜单', '', 7, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:menu:delete', 1, 'admin', '', '', '2021-12-06 17:46:47', '2021-12-06 17:46:47', NULL);
+INSERT INTO `sys_menus` VALUES (24, '添加部门', '', 8, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:dept:add', 1, 'admin', '', '', '2021-12-07 09:33:58', '2021-12-07 09:33:58', NULL);
+INSERT INTO `sys_menus` VALUES (25, '编辑部门', '', 8, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:dept:edit', 1, 'admin', '', '', '2021-12-07 09:34:39', '2021-12-07 09:34:39', NULL);
+INSERT INTO `sys_menus` VALUES (26, '删除部门', '', 8, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:dept:delete', 1, 'admin', 'admin', '', '2021-12-07 09:35:09', '2021-12-07 09:36:26', NULL);
+INSERT INTO `sys_menus` VALUES (28, '添加岗位', '', 9, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:post:add', 2, '', 'admin', '', '2021-12-07 09:35:09', '2023-09-18 15:30:19', NULL);
+INSERT INTO `sys_menus` VALUES (29, '编辑岗位', '', 9, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:post:edit', 1, 'admin', '', '', '2021-12-07 09:35:09', '2021-12-07 09:35:09', NULL);
+INSERT INTO `sys_menus` VALUES (30, '删除岗位', '', 9, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:post:delete', 1, 'admin', '', '', '2021-12-07 09:35:09', '2021-12-07 09:35:09', NULL);
+INSERT INTO `sys_menus` VALUES (31, '导出岗位', '', 9, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:post:export', 1, 'admin', '', '', '2021-12-07 09:35:09', '2021-12-07 09:35:09', NULL);
+INSERT INTO `sys_menus` VALUES (32, '添加字典类型', '', 10, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:dictT:add', 1, 'admin', '', '', '2021-12-07 09:35:09', '2021-12-07 09:35:09', NULL);
+INSERT INTO `sys_menus` VALUES (33, '编辑字典类型', '', 10, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:dictT:edit', 1, 'admin', '', '', '2021-12-07 09:35:09', '2021-12-07 09:35:09', NULL);
+INSERT INTO `sys_menus` VALUES (34, '删除字典类型', '', 10, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:dictT:delete', 1, 'admin', '', '', '2021-12-07 09:35:09', '2021-12-07 09:35:09', NULL);
+INSERT INTO `sys_menus` VALUES (35, '导出字典类型', '', 10, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:dictT:export', 1, 'admin', '', '', '2021-12-07 09:35:09', '2021-12-07 09:35:09', NULL);
+INSERT INTO `sys_menus` VALUES (36, '新增字典数据', '', 10, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:dictD:add', 1, 'admin', '', '', '2021-12-07 09:35:09', '2021-12-07 09:35:09', NULL);
+INSERT INTO `sys_menus` VALUES (37, '修改字典数据', '', 10, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:dictD:edit', 1, 'admin', '', '', '2021-12-07 09:48:04', '2021-12-07 09:48:04', NULL);
+INSERT INTO `sys_menus` VALUES (38, '删除字典数据', '', 10, 1, '', '', '', 2, '', 'F', 1, 2, 2, 'system:dictD:delete', 1, 'admin', '', '', '2021-12-07 09:48:42', '2021-12-07 09:48:42', NULL);
+INSERT INTO `sys_menus` VALUES (39, 'API管理', '', 1, 2, 'iconfont icon-siweidaotu', '/system/api', '/system/api/index', 2, '', 'C', 1, 2, 2, 'system:api:list', 1, '', 'panda', '', '2021-12-09 09:09:13', '2022-07-16 10:23:42', NULL);
+INSERT INTO `sys_menus` VALUES (40, '添加api', '', 39, 1, '', '/system/api', '', 2, '', 'F', 1, 2, 2, 'system:api:add', 1, 'admin', '', '', '2021-12-09 09:09:54', '2021-12-09 09:09:54', NULL);
+INSERT INTO `sys_menus` VALUES (41, '编辑api', '', 39, 1, '', '/system/api', '', 2, '', 'F', 1, 2, 2, 'system:api:edit', 1, 'admin', '', '', '2021-12-09 09:10:38', '2021-12-09 09:10:38', NULL);
+INSERT INTO `sys_menus` VALUES (42, '删除api', '', 39, 1, '', '/system/api', '', 2, '', 'F', 1, 2, 2, 'system:api:delete', 1, 'admin', '', '', '2021-12-09 09:11:11', '2021-12-09 09:11:11', NULL);
+INSERT INTO `sys_menus` VALUES (43, 'im用户管理', '', 0, 2, 'elementUser', '', 'Layout', 2, '', 'M', 1, 2, 2, '', 1, '', 'admin', '', '2023-09-06 15:22:10', '2023-09-07 10:33:27', '2023-09-07 16:29:34');
+INSERT INTO `sys_menus` VALUES (44, '产品配置', '', 0, 3, 'elementSetUp', '', 'Layout', 2, '', 'M', 1, 2, 2, '', 1, '', 'admin', '', '2023-09-06 16:49:18', '2023-09-06 17:05:34', NULL);
+INSERT INTO `sys_menus` VALUES (45, '群组管理', '', 0, 4, 'elementAvatar', '', 'Layout', 2, '', 'M', 1, 2, 2, '', 1, '', 'admin', '', '2023-09-06 16:53:42', '2023-09-06 17:05:56', NULL);
+INSERT INTO `sys_menus` VALUES (46, '消息管理', '', 0, 5, 'elementMessage', '/msg/index', '/msg/index', 2, '', 'M', 1, 2, 2, 'system:msg', 1, '', 'admin', '', '2023-09-06 16:54:06', '2023-09-07 11:00:07', NULL);
+INSERT INTO `sys_menus` VALUES (47, '系统消息', '', 0, 6, 'elementMessageBox', '', 'Layout', 2, '', 'M', 1, 2, 2, '', 1, '', 'admin', '', '2023-09-06 16:54:37', '2023-09-06 17:03:51', NULL);
+INSERT INTO `sys_menus` VALUES (48, '敏感词管理', '', 0, 7, 'elementInfoFilled', '', 'Layout', 2, '', 'M', 1, 2, 2, '', 1, '', 'admin', '', '2023-09-06 16:58:56', '2023-09-06 17:04:18', '2023-09-07 16:29:41');
+INSERT INTO `sys_menus` VALUES (49, '操作日志', '', 0, 8, 'elementComment', '', 'Layout', 2, '', 'M', 1, 2, 2, '', 1, '', 'admin', '', '2023-09-06 16:59:13', '2023-09-06 17:04:42', NULL);
+INSERT INTO `sys_menus` VALUES (50, '反馈管理', '', 0, 9, 'elementEdit', '', 'Layout', 2, '', 'M', 1, 2, 2, '', 1, '', 'admin', '', '2023-09-06 16:59:32', '2023-09-06 17:07:32', NULL);
+INSERT INTO `sys_menus` VALUES (51, '私聊消息', '', 46, 1, 'iconfont icon-tongzhi1', '/msg/single_list', '/msg/single_list', 2, '', 'C', 1, 2, 2, 'system:msg:index', 1, '', 'admin', '', '2023-09-07 10:52:10', '2023-09-07 10:59:30', NULL);
 
 -- ----------------------------
 -- Table structure for sys_posts
@@ -714,9 +714,7 @@ CREATE TABLE `sys_posts`  (
 -- Records of sys_posts
 -- ----------------------------
 INSERT INTO `sys_posts` VALUES (1, '首席执行官', 'CEO', 1, 1, '首席执行官', '', 'admin', '2021-12-02 09:21:44', '2023-09-04 09:49:50', NULL);
-INSERT INTO `sys_posts` VALUES (2, '首席技术执行官', 'CTO', 2, 0, '', 'panda', '', '2021-12-02 09:21:44', '2022-07-16 17:37:42', NULL);
-INSERT INTO `sys_posts` VALUES (3, 'testPost2', '111', 0, 1, 'this is a remark', '', 'admin', '2023-08-23 12:18:20', '2023-08-23 12:18:56', '2023-08-23 12:19:26');
-INSERT INTO `sys_posts` VALUES (7, 'testPost2', '111', 3, 1, 'this is a remark', '', 'admin', '2023-08-31 20:54:03', '2023-09-01 16:14:55', NULL);
+INSERT INTO `sys_posts` VALUES (2, '首席技术执行官', 'CTO', 2, 1, '', 'panda', '', '2021-12-02 09:21:44', '2022-07-16 17:37:42', NULL);
 
 -- ----------------------------
 -- Table structure for sys_role_btns
