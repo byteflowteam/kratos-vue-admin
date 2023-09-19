@@ -192,27 +192,27 @@ func (s *MenusService) ListMenus(ctx context.Context, req *pb.ListMenusRequest) 
 		reqData = make([]*pb.MenuTree, len(menuList))
 		for i, menu := range menuList {
 			reqData[i] = &pb.MenuTree{
-				MenuId:     menu.ID,
-				MenuName:   menu.MenuName,
-				Title:      menu.Title,
-				ParentId:   menu.ParentID,
-				Sort:       menu.Sort,
-				Icon:       menu.Icon,
-				Path:       menu.Path,
-				Component:  menu.Component,
-				IsIframe:   menu.IsIframe,
-				Link:       menu.Link,
-				MenuType:   menu.MenuType,
-				Hidden:     menu.Hidden,
-				KeepAlive:  menu.KeepAlive,
-				IsAffix:    menu.IsAffix,
-				Permission: menu.Permission,
-				Status:     menu.Status,
-				CreateBy:   menu.CreateBy,
-				UpdateBy:   menu.UpdateBy,
-				Remark:     menu.Remark,
-				CreateTime: util.NewTimestamp(menu.CreatedAt),
-				UpdateTime: util.NewTimestamp(menu.UpdatedAt),
+				MenuId:      menu.ID,
+				MenuName:    menu.MenuName,
+				Title:       menu.Title,
+				ParentId:    menu.ParentID,
+				Sort:        menu.Sort,
+				Icon:        menu.Icon,
+				Path:        menu.Path,
+				Component:   menu.Component,
+				IsIframe:    menu.IsIframe,
+				IsLink:      menu.Link,
+				MenuType:    menu.MenuType,
+				IsHide:      menu.Hidden,
+				IsKeepAlive: menu.KeepAlive,
+				IsAffix:     menu.IsAffix,
+				Permission:  menu.Permission,
+				Status:      menu.Status,
+				CreateBy:    menu.CreateBy,
+				UpdateBy:    menu.UpdateBy,
+				Remark:      menu.Remark,
+				CreateTime:  util.NewTimestamp(menu.CreatedAt),
+				UpdateTime:  util.NewTimestamp(menu.UpdatedAt),
 			}
 		}
 	}
@@ -232,28 +232,28 @@ func convertToMenuTree(sysMenus []*model.SysMenu) []*pb.MenuTree {
 	// 创建 MenuTree 节点并将其存储在 menuMap 中
 	for _, menu := range sysMenus {
 		menuTree := &pb.MenuTree{
-			MenuId:     menu.ID,
-			MenuName:   menu.MenuName,
-			Title:      menu.Title,
-			ParentId:   menu.ParentID,
-			Sort:       menu.Sort,
-			Icon:       menu.Icon,
-			Path:       menu.Path,
-			Component:  menu.Component,
-			IsIframe:   menu.IsIframe,
-			Link:       menu.Link,
-			MenuType:   menu.MenuType,
-			Hidden:     menu.Hidden,
-			KeepAlive:  menu.KeepAlive,
-			IsAffix:    menu.IsAffix,
-			Permission: menu.Permission,
-			Status:     menu.Status,
-			CreateBy:   menu.CreateBy,
-			UpdateBy:   menu.UpdateBy,
-			Remark:     menu.Remark,
-			CreateTime: util.NewTimestamp(menu.CreatedAt),
-			UpdateTime: util.NewTimestamp(menu.UpdatedAt),
-			Children:   []*pb.MenuTree{},
+			MenuId:      menu.ID,
+			MenuName:    menu.MenuName,
+			Title:       menu.Title,
+			ParentId:    menu.ParentID,
+			Sort:        menu.Sort,
+			Icon:        menu.Icon,
+			Path:        menu.Path,
+			Component:   menu.Component,
+			IsIframe:    menu.IsIframe,
+			IsLink:      menu.Link,
+			MenuType:    menu.MenuType,
+			IsHide:      menu.Hidden,
+			IsKeepAlive: menu.KeepAlive,
+			IsAffix:     menu.IsAffix,
+			Permission:  menu.Permission,
+			Status:      menu.Status,
+			CreateBy:    menu.CreateBy,
+			UpdateBy:    menu.UpdateBy,
+			Remark:      menu.Remark,
+			CreateTime:  util.NewTimestamp(menu.CreatedAt),
+			UpdateTime:  util.NewTimestamp(menu.UpdatedAt),
+			Children:    []*pb.MenuTree{},
 		}
 		menuMap[menu.ID] = menuTree
 	}
@@ -276,12 +276,6 @@ func convertToMenuTree(sysMenus []*model.SysMenu) []*pb.MenuTree {
 
 // Build 构建前端路由
 func Build(menus []*pb.MenuTree) []*pb.MenuTreeAuth {
-	equals := func(a string, b string) bool {
-		if a == b {
-			return true
-		}
-		return false
-	}
 	rvs := make([]*pb.MenuTreeAuth, 0)
 	for _, ms := range menus {
 		rv := &pb.MenuTreeAuth{
@@ -290,11 +284,11 @@ func Build(menus []*pb.MenuTree) []*pb.MenuTreeAuth {
 			Component: ms.Component,
 			Meta: &pb.MenuTreeMeta{
 				Title:       ms.MenuName,
-				IsLink:      ms.Link,
-				IsHide:      equals("1", string(ms.Hidden)),
-				IsKeepAlive: equals("0", string(ms.KeepAlive)),
-				IsAffix:     equals("0", string(ms.IsAffix)),
-				IsIframe:    equals("0", string(ms.IsIframe)),
+				IsLink:      len(ms.IsLink) > 0,
+				IsHide:      ms.IsHide == 2,
+				IsKeepAlive: ms.IsKeepAlive == 1,
+				IsAffix:     ms.IsAffix == 1,
+				IsIframe:    ms.IsIframe == 1,
 				Auth:        make([]string, 0),
 				Icon:        ms.Icon,
 			},
