@@ -65,7 +65,7 @@ message MenuTreeAuth {
 
 message MenuTreeMeta {
    string title = 1;
-   string isLink = 2;
+   bool isLink = 2;
    bool isHide = 3;
    bool isKeepAlive = 4;
    bool isAffix = 5;
@@ -84,10 +84,10 @@ message MenuTree {
   string path = 7;
   string component = 8;
   int32 isIframe = 9;
-  string link = 10;
+  string isLink = 10;
   string menuType = 11;
-  int32 hidden = 12;
-  int32 keepAlive = 13;
+  int32 isHide = 12;
+  int32 isKeepAlive = 13;
   int32 isAffix = 14;
   string permission = 15;
   int32 status = 16;
