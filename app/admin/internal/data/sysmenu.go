@@ -42,6 +42,31 @@ func (m *sysMenuRepo) Delete(ctx context.Context, id int64) error {
 	return err
 }
 
+func (m *sysMenuRepo) GetAllChildren(ctx context.Context, id int64) ([]int64, error) {
+	q := m.data.Query(ctx).SysMenu
+	// 要返回的子集菜单
+	var allChildrenMenusIds []int64
+	nextParentIds := []int64{id}
+	for len(nextParentIds) > 0 {
+		menus, err := q.WithContext(ctx).Where(q.ParentID.In(nextParentIds...)).Find()
+		if err != nil {
+			return nil, err
+		}
+		nextParentIds = nil
+		for _, menu := range menus {
+			allChildrenMenusIds = append(allChildrenMenusIds, menu.ID)
+			nextParentIds = append(nextParentIds, menu.ID)
+		}
+	}
+	return allChildrenMenusIds, nil
+}
+
+func (m *sysMenuRepo) DeleteMultiple(ctx context.Context, ids []int64) error {
+	q := m.data.Query(ctx).SysMenu
+	_, err := q.WithContext(ctx).Where(q.ID.In(ids...)).Delete()
+	return err
+}
+
 func (m *sysMenuRepo) FindById(ctx context.Context, id int64) (*model.SysMenu, error) {
 	q := m.data.Query(ctx).SysMenu
 	return q.WithContext(ctx).Where(q.ID.Eq(id)).First()
@@ -61,7 +86,7 @@ func (m *sysMenuRepo) FindByNameStatus(ctx context.Context, name string, status 
 	if status != 0 {
 		db = db.Where(q.Status.Eq(status))
 	}
-	return db.Find()
+	return db.Order(q.Sort).Find()
 }
 
 // GetRoleMenuId 获取角色对应的菜单ids
@@ -151,16 +176,16 @@ func DiguiMenu(menulist []*model.SysMenu, menu *pb.MenuTree) *pb.MenuTree {
 		mi.Icon = list[j].Icon
 		mi.Path = list[j].Path
 		mi.MenuType = list[j].MenuType
-		mi.KeepAlive = list[j].KeepAlive
+		mi.IsKeepAlive = list[j].KeepAlive
 		mi.Permission = list[j].Permission
 		mi.ParentId = list[j].ParentID
 		mi.IsAffix = list[j].IsAffix
 		mi.IsIframe = list[j].IsIframe
-		mi.Link = list[j].Link
+		mi.IsLink = list[j].Link
 		mi.Component = list[j].Component
 		mi.Sort = list[j].Sort
 		mi.Status = list[j].Status
-		mi.Hidden = list[j].Hidden
+		mi.IsHide = list[j].Hidden
 		mi.CreateTime = util.NewTimestamp(list[j].CreatedAt)
 		mi.UpdateTime = util.NewTimestamp(list[j].UpdatedAt)
 		mi.Children = []*pb.MenuTree{}

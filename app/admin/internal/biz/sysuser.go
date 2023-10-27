@@ -36,6 +36,7 @@ type SysUserRepo interface {
 	Save(ctx context.Context, user *model.SysUser) (*model.SysUser, error)
 	Delete(ctx context.Context, id int64) error
 	UpdateByID(ctx context.Context, id int64, user *model.SysUser) error
+	Create(ctx context.Context, g *model.SysUser) (*model.SysUser, error)
 
 	FindByID(ctx context.Context, id int64) (*model.SysUser, error)
 	FindByUsername(ctx context.Context, username string) (*model.SysUser, error)
@@ -76,7 +77,13 @@ func (uc *SysUserUseCase) CreateSysUser(ctx context.Context, u *model.SysUser) (
 	u.UpdateBy = claims.Nickname
 	u.CreatedAt = time.Now()
 	u.UpdatedAt = time.Now()
-	return uc.userRepo.Save(ctx, u)
+	// 查看登陆账号是否已存在
+	user, err := uc.userRepo.FindByUsername(ctx, u.Username)
+	if errors.Is(err, gorm.ErrRecordNotFound) {
+		return uc.userRepo.Create(ctx, u)
+	} else {
+		return user, pb.ErrorAccountExisted("账号已存在")
+	}
 }
 
 func (uc *SysUserUseCase) UpdateSysUser(ctx context.Context, u *model.SysUser) error {

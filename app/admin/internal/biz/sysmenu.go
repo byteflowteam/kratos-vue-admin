@@ -14,6 +14,8 @@ type SysMenuRepo interface {
 	Create(ctx context.Context, menu *model.SysMenu) error
 	Save(ctx context.Context, menu *model.SysMenu) error
 	Delete(ctx context.Context, id int64) error
+	DeleteMultiple(ctx context.Context, ids []int64) error
+	GetAllChildren(ctx context.Context, id int64) ([]int64, error)
 
 	FindById(ctx context.Context, id int64) (*model.SysMenu, error)
 	ListAll(ctx context.Context) ([]*model.SysMenu, error)
@@ -48,6 +50,15 @@ func (m *SysMenuUseCase) UpdateMenus(ctx context.Context, menu *model.SysMenu) (
 }
 
 func (m *SysMenuUseCase) DeleteMenus(ctx context.Context, id int64) error {
+	// 删除父级菜单时同时删除子菜单，否则获取菜单会报错
+	allChildrenMenus, err := m.repo.GetAllChildren(ctx, id)
+	if err != nil {
+		return pb.ErrorDatabaseErr("获取所有子菜单失败:", err.Error())
+	}
+	err = m.repo.DeleteMultiple(ctx, allChildrenMenus)
+	if err != nil {
+		return pb.ErrorDatabaseErr("删除子菜单失败:", err.Error())
+	}
 	return m.repo.Delete(ctx, id)
 }
 

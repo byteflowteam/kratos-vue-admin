@@ -1016,13 +1016,13 @@ func (m *MenuTree) validate(all bool) error {
 
 	// no validation rules for IsIframe
 
-	// no validation rules for Link
+	// no validation rules for IsLink
 
 	// no validation rules for MenuType
 
-	// no validation rules for Hidden
+	// no validation rules for IsHide
 
-	// no validation rules for KeepAlive
+	// no validation rules for IsKeepAlive
 
 	// no validation rules for IsAffix
 

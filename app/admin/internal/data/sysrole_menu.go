@@ -91,7 +91,7 @@ func (s *sysRoleMenuRepo) GetMenuByRoleKey(roleKey string) []*model.SysMenu {
 
 	db := s.data.db.Table("sys_menus")
 	db = db.Select("sys_menus.*").Joins("left join sys_role_menus on sys_role_menus.menu_id=sys_menus.id")
-	db = db.Where("sys_role_menus.role_name=? and sys_menus.menu_type in ('M','C')", roleKey)
+	db = db.Where("sys_role_menus.role_name=? and sys_menus.menu_type in ('M','C') and (sys_menus.status = 1 or sys_menus.status = 0)", roleKey)
 	err := db.Debug().Order("sys_menus.sort").Find(&menus).Error
 	if err != nil {
 		return nil

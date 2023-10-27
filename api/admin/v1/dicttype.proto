@@ -25,7 +25,7 @@ service DictType {
 	//更新
 	rpc UpdateDictType (UpdateDictTypeRequest) returns (UpdateDictTypeReply){
 		option (google.api.http) = {
-			post: "/system/dict/type/{dictId}"
+			put: "/system/dict/type"
 			body:"*"
 		};
 	};

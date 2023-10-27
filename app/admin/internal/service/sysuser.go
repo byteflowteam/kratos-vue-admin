@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"github.com/byteflowteam/kratos-vue-admin/pkg/common/constant"
 	"github.com/go-kratos/kratos/v2/log"
 
 	pb "github.com/byteflowteam/kratos-vue-admin/api/admin/v1"
@@ -132,7 +133,7 @@ func (s *SysuserService) GetSysuser(ctx context.Context, req *pb.GetSysuserReque
 		replyRole[i] = &pb.RoleData{
 			RoleId:     d.ID,
 			RoleName:   d.RoleName,
-			Status:     int64(d.Status),
+			Status:     d.Status,
 			RoleKey:    d.RoleKey,
 			RoleSort:   d.RoleSort,
 			DataScope:  int64(d.DataScope),
@@ -160,6 +161,11 @@ func (s *SysuserService) GetSysuser(ctx context.Context, req *pb.GetSysuserReque
 		}
 	}
 
+	// 没有设置角色会报错
+	roleName := ""
+	if role != nil && role.RoleName != "" {
+		roleName = role.RoleName
+	}
 	replyUser := &pb.UserData{
 		UserId:     user.ID,
 		NickName:   user.NickName,
@@ -176,7 +182,7 @@ func (s *SysuserService) GetSysuser(ctx context.Context, req *pb.GetSysuserReque
 		UpdateBy:   user.UpdateBy,
 		Remark:     user.Remark,
 		Status:     user.Status,
-		Username:   user.Username,
+		Username:   roleName,
 		RoleName:   role.RoleName,
 		CreateTime: util.NewTimestamp(user.CreatedAt),
 		UpdateTime: util.NewTimestamp(user.UpdatedAt),
@@ -311,10 +317,15 @@ func (s *SysuserService) Auth(ctx context.Context, req *pb.AuthRequest) (*pb.Aut
 		return nil, err
 	}
 
-	menus, err := s.roleMenuCase.SelectMenuRole(ctx, role.RoleName)
-
-	if err != nil {
-		return nil, err
+	var menus []*pb.MenuTree
+	// 被禁用了，菜单显示空
+	if role.Status == constant.StatusMenusForbidden {
+		menus = make([]*pb.MenuTree, 0)
+	} else {
+		menus, err = s.roleMenuCase.SelectMenuRole(ctx, role.RoleName)
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	pbUser := &pb.AuthReply_User{
@@ -403,7 +414,7 @@ func (s *SysuserService) GetPostInit(ctx context.Context, req *pb.GetPostInitReq
 		replyRoles[i] = &pb.RoleData{
 			RoleId:     d.ID,
 			RoleName:   d.RoleName,
-			Status:     int64(d.Status),
+			Status:     d.Status,
 			RoleKey:    d.RoleKey,
 			RoleSort:   d.RoleSort,
 			DataScope:  int64(d.DataScope),
@@ -461,7 +472,7 @@ func (s *SysuserService) GetUserRolePost(ctx context.Context, req *pb.GetUserRol
 		replyRoles[i] = &pb.RoleData{
 			RoleId:     d.ID,
 			RoleName:   d.RoleName,
-			Status:     int64(d.Status),
+			Status:     d.Status,
 			RoleKey:    d.RoleKey,
 			RoleSort:   d.RoleSort,
 			DataScope:  int64(d.DataScope),

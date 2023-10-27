@@ -3,6 +3,7 @@ package biz
 import (
 	"context"
 	"github.com/byteflowteam/kratos-vue-admin/app/admin/internal/pkg"
+	"github.com/byteflowteam/kratos-vue-admin/pkg/common/constant"
 	"time"
 
 	"github.com/go-kratos/kratos/v2/log"
@@ -36,6 +37,10 @@ func (receiver *AuthUseCase) Login(ctx context.Context, req *pb.LoginRequest) (t
 	user, err := receiver.userRepo.FindByUsername(ctx, req.Username)
 	if err != nil {
 		pErr = pb.ErrorUserNotFound("用户名或密码错误")
+		return
+	}
+	if user.Status == constant.StatusUserForbidden {
+		pErr = pb.ErrorAccountForbidden("账号被停用")
 		return
 	}
 
